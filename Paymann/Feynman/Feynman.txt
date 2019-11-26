@@ -1,0 +1,12 @@
+Feynman developed a widely used pictorial representation scheme for the mathematical expressions describing the behavior of subatomic particles, which later became known as Feynman diagrams.
+During his lifetime, Feynman became one of the best-known scientists in the world.
+In a 1999 poll of 130 leading physicists worldwide by the British journal Physics World he was ranked as one of the ten greatest physicists of all time.
+Appending a new line to Feynman.txt
+Appening one extra line.
+He assisted in the development of the atomic bomb during World War II and became known to a wide 
+public in the 1980s as a member of the Rogers Commission, the panel that investigated the Space 
+Shuttle Challenger disaster. 
+Along with his work in theoretical physics, Feynman has been credited with pioneering the field 
+of quantum computing and introducing the concept of nanotechnology. 
+He held the Richard C. 
+Tolman professorship in theoretical physics at the California Institute of Technology.
