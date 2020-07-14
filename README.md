@@ -1,7 +1,7 @@
 # ESS345
 A collection of Jupyter Notebooks for ESS345 Computational Geology. 
 These are specifically targeted to a non-technical audience with no
-previous computinh experience.
+previous computing experience.
 
 Feel free to use these, but please follow the GPL license
 terms. Specifically, if you modify the files, save them under a new
