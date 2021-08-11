@@ -9,79 +9,50 @@
 
 ** TODO 
 
- - expand use of list method
- - add zip examples
- - add advanced questions
- - 
+
+
 
 
 * Assignment
 
-*ESS345H1 Computational Geology - Working with Lists*
+** Learning outcomes
 
-*Date:*
+ - know how to query object methods
+ - understand the difference between object methods and functions
+ - understand the difference between methods which operate on the on a
+   given object *IN PLACE*, and functions which return a modified copy
+   of an object
 
-*First Name:*
-
-*Last Name:*
-
-*Student: Id*
-
-You must copy this notebook to your submissions folder before editing
-it. Otherwise, your edits may be overwritten the next time you log into
-syzygy. Please name your copy "Working-with-lists-FirstName-LastName".
-
-To submit your assignment, you need to download it and submit
-it on Quercus in pdf and notebook format.
-
-Below you will find empty code cells in which you have to enter python
-code. Please use the respective cell below each question.  Where
-necessary, add text cells to enter your answers. Your answers will
-only count if the code executes without error. It is thus recommended
-to run your solutions before submitting the assignment.
-
-*Note: Do not type your answers by hand. Rather, write code which*
-*produces the answer, and your pdf should show the code as well as the
-results of the code execution!*
-
+** Questions
 Execute the following block so that =my_list= becomes known in your
 local Jupyter session.
 #+BEGIN_SRC ipython
 my_list = [3, 4, 5, 12, 0, 11, 1, 2, 9, 8, 7, 13, 10]
-a = 1024
 #+END_SRC
 
 Add here a text block where you enumerate (i.e., a numbered list) all user
 visible methods of the =my_list= object which have the *IN PLACE* warning in
 their help text (if in doubt, consult your working with list module on how to
-find out about this). There is no need to add a code cell, just list what you find (3pts).
+find out about this). There is no need to add a code cell, just list what you find (3 pts).
 
-Which of the user visible methods associated with =a= can tell you how
-many bits are used to store the value of a? To answer your question,
-create a code block and type the relevant commands. Use comments where
-necessary. Lastly, assign a value of 4 to variable =a=. How many bits
-are used now compared to when the value of was 1024? Express your
-results also in bytes (4 pts).
+Add a code block which will sort =my_list= using a python function (as
+opposed to a list method). Print =my_list= to verify that it has been sorted 4 pts
 
-# Add a code block below, which shows 3 different ways to display =my_list= in
-# reverse order without modifying the actual order in =my_list=. You get 2 pts
-# each for the first 2 solutions, and 4pts if you can think of a third. All 3
-# approaches must have been discussed in class before, so esoteric solutions
-# found on the internet, do not count. A solution may require more than one
-# statement. *maybe drop this, its not clear"
+Add code below which achieve the same result as the previous question,
+but this time use a list method, rather than a function. 2 pts if the
+result is correct, plus 2 extra points if your code reflects the
+difference between in-place and copy operations
+#+BEGIN_SRC ipython
+my_list = [3, 4, 5, 12, 0, 11, 1, 2, 9, 8, 7, 13, 10]
+#+END_SRC
 
-# #+BEGIN_SRC ipython
-# print(my_list)
-# my_list[::-1]
-# m_l = my_list.copy()
-# m_l.reverse()
-# m_r = my_list[::-1]
-# print(m_l)
-# print(m_r)
-# #+END_SRC
+Add a code block below, which displays =my_list= in reverse order
+without affecting the actual ordering of =y_list= (2 pts). Add a
+second line which uses a list method to order the contents of
+=my_list=. (2 pts)
 
 Execute the following statement, and add a python statement which
-counts the occurrences of the number five in =long_list=). 1pt
+counts the occurrences of the number five in =long_list=). 1 pt
 
 #+BEGIN_SRC ipython
 long_list = [2, 2, 5, 5, 0, 3, 3, 4, 3, 2, 4, 2, 4, 3, 3, 4, 2, 1, 5,
@@ -91,6 +62,50 @@ long_list = [2, 2, 5, 5, 0, 3, 3, 4, 3, 2, 4, 2, 4, 3, 3, 4, 2, 1, 5,
              0, 3, 4, 2, 3, 0, 2, 3, 5, 0, 4, 5]
 #+END_SRC
 
+Write a python statement which returns the position (index) of the
+first occurrence of the number three. 2 pts
+
+Create a copy of =a= and reverse the copy, then print both variables
+(see below). You results should look like the comment in the code box
+below. 2 pts
+#+BEGIN_SRC ipython
+a = [3, 4, 5, 12]
+# print(a)
+# print(b)
+# should result in
+# 3, 4, 5, 12
+# 12, 5, 4, 3
+#+END_SRC
+
+Write a python statement which adds the elements of =b= to =a= 2pts
+
+Write a statement which removes the second occurrence of the number
+twelve in =a= 2 pts
+
+Write a statement which uses a different method than in the previous
+question to remove the first occurrence of the number twelve in =a=
+2 pts
+
+Write a statement which inserts the number twelve into =a= at the same
+position where you deleted it in the previous question. 2 pts
+
+Explain the difference between =extend()= and =append()= 4 pts.
+
+Explain in your own words what happens when you execute the following (4 pts)
+#+BEGIN_SRC ipython
+a = [1, 2, 3,]
+a + 2 * a
+#+END_SRC
 
 
 
+** Marking Scheme
+Total points: 36
+
+ - Points as listed in each question 34 pts
+ - Correct naming scheme 2 pts
+
+
+** Submission Instructions
+
+#+Include: submission_instructions.org

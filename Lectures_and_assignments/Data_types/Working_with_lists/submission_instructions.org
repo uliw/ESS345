@@ -1,0 +1,43 @@
+
+Create a new (or copy and existing) notebook in your =submissions=
+folder before editing it. Otherwise, your edits may be overwritten the
+next time you log into syzygy. Please name your copy
+"Assignment-Name-FirstName-LastName". Replace the =Assignment-Name=
+with the name of the assignment, and =FirstName-Last-Name= with
+your own name.
+
+Your notebook/pdf must start with the following lines 
+
+*Assignment Title*
+
+*Date:*
+
+*First Name:*
+
+*Last Name:*
+
+*Student: Id*
+
+Before submitting your assignment, re-read the learning outcomes and
+verify that you are comfortable which each concept. If not, please
+speak up on the discussion board and ask for further clarification. I
+can guarantee that you if you feel uncertain about a concept, at least
+half the class will be in the same boat. So don't be shy!
+
+To submit your assignment, you need to download it =ipyn= notebook
+format *and* =pdf= format. Please submit both files on Quercus. Note
+that the pdf export can fail if your file contains invalid
+markup/python code. So you need to check that the pdf export is
+complete and does not miss any sections. If you have export problems,
+please contact the course instructor directly.
+
+Notebooks typically have empty code cells in which you have to enter
+python code. Please use the respective cell below each question, or
+create a python cell where necessary. Add text cells to enter your
+answers where appropriate. Your answers will only count if the code
+executes without error. It is thus recommended to run your solutions
+before submitting the assignment.
+
+*Note: Do not type your answers by hand. Rather, write code which*
+*produces the answer, and your pdf should show the code as well as*
+*the results of the code execution!*

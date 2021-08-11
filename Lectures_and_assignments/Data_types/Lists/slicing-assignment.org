@@ -23,12 +23,9 @@ Run this to export the notebook without the results attached!
 
 ** Learning Outcomes
  
- - get comfortable selecting subsets from list-type variables
+ - get comfortable selecting subsets from list-type variables using
+   slicing syntax
  
-** Submission instructions
-
-#+INCLUDE: ./submission_instructions.org
-
 
 ** Questions
 
@@ -43,13 +40,7 @@ Add a textbox here, and explain why the above statement does not
 produce any output. 2pts
 
 
-Write three python statements (one on each line), which will show the
-first, the last and the second last element of =my_list=). 3pts
-#+BEGIN_SRC ipython
-# Add your code here
-#+END_SRC
-
-Write python statement which shows the last 4 elements of =my_list=
+Write a python statement which shows the last 4 elements of =my_list=
 1pt
 
 #+BEGIN_SRC ipython
@@ -95,12 +86,31 @@ what is wrong with this python statement below? 1pt
 my_list = [1 2 3]
 #+END_EXAMPLE
 
+Add a python statement below which show the first 3 words of =ml= (1pt)
+#+BEGIN_SRC ipython
+ml = ["This", "is", "a", "short", "sentence"]
+#+END_SRC
+
+
+
+*** Advanced question
+
+Add a python statement which will uses slicing syntax to extract the
+first and last element of the first list in the list of lists. It is
+ok to assume that the sub-list length is 3. (3 pt)
+#+BEGIN_SRC ipython
+ml = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+#+END_SRC
 
 
 ** Marking Scheme
 
-Total points: 19
+Total points: 22
 
  - 2 pts for correct notebook formatting
  - 2 pts for correct notebook name
- - 15 pts for the questions
+ - 18 pts for the questions
+
+** Submission Instructions
+
+#+INCLUDE: submission_instructions.org
