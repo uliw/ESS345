@@ -1,0 +1,127 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+
+
+* Working with the pandas series data object
+@@latex:\index{pandas!series}@@ The pandas dataframe is composed of
+smaller units, the so called pandas series. You already used this data
+type implicitly in our last module, but here we will explore it more
+fully. Lets create a data-frame first. Since I am lazy, I use a
+function from the numpy library to generate an array of randomly
+distributed integer values between 0 and 9, and yes, I simply googled
+"pandas generate list of random integers"
+@@latex:\index{numpy!random!integers}@@
+#+BEGIN_SRC ipython
+import pandas as pd
+import numpy as np
+
+# create a dataframe with filled with random integer values
+# between 0 and 9, the dataframe will have 15 rows and 4
+# columns which are named named A, B, C, D
+df :pd.DataFrame = pd.DataFrame(np.random.randint(0,9,size=(15, 4)),
+                       columns=list('ABCD'))
+print(df.head())
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [1]: 
+# output
+   A  B  C  D
+0  0  5  7  3
+1  6  4  2  8
+2  4  2  7  3
+3  5  8  0  6
+4  2  0  3  6
+
+:end:
+
+Now lets extract the data from column A, and execute the following
+#+BEGIN_SRC ipython :results output drawer :display text/plain
+A :pd.Series = df['A'] # extract column A, and save as pandas data series
+B :pd.Series = A * 2   # multiply A with 2 and print the result
+
+# now we create a new dataframe from the two pandas series objects if
+# you dont understand the syntax, go back to the "other data types"
+# module and check out what I am doing here. If you cannot figure it
+# out, speak up!
+result :pd.DataFrame = pd.DataFrame({'A': A, 'A*2 =': B})
+result.head()     # multiply A with 2 and print the result
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [4]: 
+# text/plain
+:    A  A*2 =
+: 0  0      0
+: 1  6     12
+: 2  4      8
+: 3  5     10
+: 4  2      4
+:end:
+
+You probably remember that it was not possible to multiply a list with
+a number because lists can contain numbers, letters, other lists,
+tuples etc. In order to do this, you had to write a loop. A pandas
+series on the other hand, can only have one data-type per column. In
+other words, a column can contain either strings, integers, floats
+etc., but all entries in a given column must be of the same
+type. Since A consists only of numbers, python can directly multiply
+each element with 2. What happens if you multiply A*B is the
+multiplication element by element or do you get the cross product?
+What happens if you write =A**B=?  Hurray! no more loops!  (kinda...)
+
+In a way python treats a pandas series object like a vector, not
+unlike matlab. The numpy library even provides a vector datatype which
+behaves similar to matlab. There is some cool stuff we can do with
+this. We can e.g., apply a comparison operator to a pandas series
+#+BEGIN_SRC ipython :results output pp replace
+print(A>2)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+# Out [5]: 
+# output
+0      True
+1     False
+2     False
+3      True
+4      True
+5      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11    False
+12     True
+13     True
+14     True
+Name: A, dtype: bool
+#+end_example
+
+
+Now why would this be useful? Remember that =False= equals zero,
+whereas =True= euqals 1. So if you want to count the number of values
+in A which are larger then 2, you can simply write
+#+BEGIN_SRC ipython :results output pp replace
+n :int = sum(A>2) 
+print (n)
+#+END_SRC
+
+#+RESULTS:
+: # Out [6]: 
+: # output
+: 12
+: 
+
+neat!

@@ -1,0 +1,153 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+* Variables
+
+
+@@latex:\index{variable}@@
+A computer is a device which can store and manipulate data
+(information). Before we proceed to learn the basics of data
+manipulation, we need to understand how data is stored.
+
+On its most basic level, a computer resembles a library (you have been
+to the library, right?). There are vast amounts of storage space, a
+catalog where we can look up where a specific book is stored, a
+librarian who will move books around and do other maintenance tasks,
+and a user who manipulates the information in those books, and who
+might writes a new book that eventually goes back into the library.
+
+Books can be found using a rather specific way of writing their
+address in the library storage which, e.g., could read 
+=QA76.17.C4672012=.
+
+Similarly, the information in a computer can be retrieved by using equally
+cryptic schemes, e.g., =0x5560b128f480=. The =0x= at the beginning
+tells us that this is a number to the base of 16, which after
+conversion into our 10 based system basically indicates that the
+respective data is stored in the 93873777472640^{th} memory
+cell. Clearly, it is cumbersome to keep these alphanumeric sequences
+in mind. This is where variables come into play. Rather then saying
+store the number 4 at location =0x5560b128f480= we can simply say
+"assign the value of 4 to the variable a". Let's try this and execute
+the following statement doing a left-click in the following cell, and
+hit =shift+enter=
+#+BEGIN_SRC ipython
+a = 4
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [1]: 
+:end:
+
+This will produce no output, but you will have assigned the value of 4
+to the variable =a=. Let's verify that this assignment did succeed. We
+can do so by asking the python interpreter to print the value
+of a. Execute this cell, and you should see the result printed below
+this cell
+#+BEGIN_SRC ipython
+print(a)
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [2]: 
+# output
+4
+
+:end:
+
+Go ahead and try this
+#+BEGIN_SRC ipython
+a=4
+b=5
+c=10
+(a/b)*c
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [3]: 
+# text/plain
+: 8.0
+:end:
+
+So far, this seems straightforward, and it likely reminds you of
+symbolic math you've learned in your school years. While there are
+computing environments that can do symbolic math @@\latex:\index{symbolic
+math}@@, the above example is an entirely different beast. In symbolic
+math, the expression =a = b= is equal to the expression =b = a=. Not
+so in coding (try e.g., =a = 4= vs =4 = a=).  Remember, that writing
+=a = 4= means take the value of 4, store it into memory, and give this
+memory location the name "a". A better way to write this would be =a
+<- 4=.
+
+Likewise the expression =a+a= means retrieve the value stored at
+location "a" and do an addition with the value stored at location
+"a". So the "a" is merely a reference to a memory location.  Note that
+there is nothing specific about calling this "a", You could equally
+write =myfirstvariablename = 4= but it is a lot of typing
+
+** Operators
+
+@@latex:\index{Operators}@@
+The =+= sign is called an operator. There are quite a few operators, but
+we will likely get away with the basics ones
+
+#+BEGIN_SRC ipython
+1 + 1 # Addition
+8 / 4 # division
+2 * 3 # multiplication
+3 ** 2 # 3 to the power of 2
+9 ** 0.5 # the square root of 9 (you remember that from school do you?)
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [4]: 
+# text/plain
+: 3.0
+:end:
+
+So by now, you have learned three very fundamental skills:
+
+1) Assigning a label and value to a memory location @@latex:\index{memory location!assign}@@
+2) Retrieving value from a memory location using the label as
+   reference @@latex:\index{memory location!retrieve}@@
+3) Doing some simple operations on variables and numbers
+4) And if you paid attention, how to add a comment into your python
+   code
+
+
+
+** Variable names
+@@latex:\index{variable!naming conventions}@@ In principle, python
+variables can have any name you like. However all variables:
+
+1) Must start with a letter
+2) can only contain letters, numbers, and underscores
+   (i.e., no blank spaces or special symbols)
+3) You cannot use the minus sign (or dash) to make a compound
+   name. Compound names should always be connected by an
+   underscore. i.e., =student_id= rather than =student-id= which would
+   be interpreted as =student= minus =id=
+
+In addition, I recommend to adhere to the following guidelines:
+
+1) Avoid variable names that are too general or too wordy. E.g.,
+   rather than =my_first_variable= call it =length= or any other
+   descriptive term.
+2) Avoid letters like "I" or "O" where it is hard to know whether you
+   mean lowercase "I", upper case "I", or the number "1", similarly,
+   "O" is easily confused with zero
+3) Variables names should always be lower case
+4) And it is always a good idea to add some comments which explain
+   what your variable means (more on this later)
+5) If in doubt, google "Python Naming Conventions"
+
+

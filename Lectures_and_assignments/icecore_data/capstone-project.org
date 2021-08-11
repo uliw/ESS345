@@ -1,0 +1,179 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+OPTIONS: d:(not "results")
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+* The Vostok Ice Core Data - A Capstone Project
+
+
+Unlike the previous assignments, I will not tell you how to do
+this, rather I will only tell you what the result should be. You have
+been taught all the necessary tools, although you may have to go and
+look them up. This exercise has some practical pitfalls, which I am
+confident that you can solve, and it has one major intellectual
+difficulty, which we can jointly solve in class (it may take some time
+though).
+
+** A brief backround on the Vostok ice core
+
+When snow changes to ice, it encloses air bubbles which remain trapped
+in the ice and serve as a window in to air chemistry of the
+past. Measuring the trapped air tells us about trace gases,
+particularly how much CO$_2$ was in the air. Similarly, the snow which
+later forms the ice, contains an abundance of paleo data as well. We
+can, e.g., measure how much dust was in the atmosphere, and we can
+look at the isotopic composition of the water molecules. Specifically,
+the ratio between hydrogen (^{1}H) and deuterium (^{2}H) can be used to
+derive the local temperature when the snow fell.
+
+Enormous efforts have been made to leverage the ice core archives to
+understand the evolution of the atmospheric CO$_2$ and temperature
+record, and we now have a continuous record which dates back 0.8 Ma,
+with the possibility to find ice as old as 1.5 Ma.  For this exercise
+we will use the Vostok Ice core (See Fig. ref:fig:vostok).  The Vostok
+location was chosen because it is the coldest location on earth where
+winter temperatures can drop to -89.2 Celsius (more fun facts at
+https://en.wikipedia.org/wiki/Vostok_Station).
+#+CAPTION: Map of Antarctica with the Location of the Vostok Icecore in red
+#+CAPTION: Source: http://maps.apps.pgc.umn.edu/id/2365, Downloaded Nov 25^{th}, 2019
+#+LABEL:fig:vostok
+#+ATTR_LATEX: :width 12cm
+[[file:Antarctica_2019-11-25_14-36-20.jpg]] 
+This ice core was the first
+long-term record of air chemistry. Drilling was a collaborative
+project between Russia, the USA, and France, and the target depth was
+reached in 1998. The ensuing publications (e.g. cite:petit99) took the
+scientific community by storm as it showed unequivocally the direct
+correlation between atmospheric $CO$_2$$ content and temperature.  
+
+** Assignment
+The ultimate goal is to the create a forecast how the temperature at
+the Vostok ice core drilling site will change in response to the
+current CO$_2$ content of the atmosphere (you can get this value at
+https://www.co2.earth/daily-co} and the projected CO$_2$ content in 2100
+(about 1000ppm). The entire assignment should be handed in as a
+jupyter notebook called "Icecore-Firstname-Lastname.ipynb". The
+notebook must contain all code, results and figures, and the usual
+header with your name etc. All code should use comments and type
+hinting.
+
+  1) Update your Jupyter instance:
+     https://utoronto.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https://github.com/uliw/ESS345&urlpath=tree/ESS345/
+  2) Goto =/ESS345/Lectures_and_assignments/icecore_data=. There you
+     will find two datasets, =deuterium-utf8.txt= and
+     =vostok-co2-utf8.txt=. These are the original files as downloaded
+     from [[http://cdiac.ess-dive.lbl.gov/trends/co2/vostok.html]] and
+     [[https://www1.ncdc.noaa.gov/pub/data/paleo/icecore/antarctica/vostok/deutnat.txt][https://www1.ncdc.noaa.gov/]] I only changed the encoding to utf8
+     so that your notebook can display them (python would have read
+     them regardless, and your local computer would display them just
+     fine).
+  3) When using these datasets, make sure you use the air-age for CO$_2$,
+     not the ice age (if you are unclear why, please speak up).
+  4) Create code which reads the data from the unmodified text files
+     (i.e., you can not edit them) and saves it as a dataframe. The
+     CO$_2$ dataframe must have the following column headers: Depth [m],
+     Ice Age [yr BP], Air Age [yr Bp], CO2 [ppmv]. The Deuterium
+     dataset should have the following column headers: Depth [m], Ice
+     Age [yr BP], Deut [permil SMOW], dTS (4pst)
+  5) Establish the age range of both datasets (it is popular trick of
+     climate change deniers to plot ice core data which excludes data
+     from the last 20,00 years. So their figures show no no CO$_2$
+     increase). (2pts)
+  6) Create a single line plot which shows both, the CO$_2$ concentration
+     versus the temperature record. Since both records have different
+     scales you will need a plot with a shared x-axis and two y-axes
+     (hint: use twinx). 2pts
+  7) Create a linear regression analysis which uses CO$_2$ as the
+     independent variable and dTS as the dependent variable. 2pts
+     (this is the difficult part)
+  8) Visualize the results with the regplot function in seaborn. Your
+     graph should show the regression equation as well as r^2, and the
+     p-value. Use the darkgrid style, 120 dpi, 4 by 5 inches, all axis
+     properly labeled (with units!). Add a useful figure title. (4pts)
+  9) Using the results of the regression analysis, write a short piece
+     of code, which takes the CO$_2$ concentration as argument, and
+     computes the resulting dTS. (2pst)
+  10) Using the modern CO$_2$ value and the value predicted for 2100,
+      how much warming does your regression analysis predict for the
+      Vostok drilling site (note, this is not global warming!) (2pts)
+  
+*** Notes and Pointers
+The above assignment has a couple of gnarly problems. Remember that it
+is often more useful to first state what needs to be done in order to
+solve a problem, rather than get hung up on how to solve the
+problem. I've also included here a copy of the general problem solving
+principles.
+
+
+ 1. *Always have a plan:* Even if you don't know what is going on, you
+    can always have a plan. Think of mapping, you may not have a
+    faintest clue of what you are dealing with, but you know that by
+    methodical mapping (taking stations, measure strike and dip, map
+    perpendicular to strike), you will zero in on the solution. The
+    same is true for computing.  Here, you probably start out with
+    writing down some general pseudo code. You will likely have to
+    refine your code, as you go, but this is still infinitely more
+    useful than just random exploration.
+ 2. *Restate the Problem:* A good way to achieve this, is to restate
+    the problem in your own words, and then explain to one of your
+    peers, or your instructor for comments. This is often the first
+    and most important step in formulating a plan. Remember to
+    describe the goal, not the way.
+ 3. *Divide the Problem:* Most complex problems can be understood as a
+    series of smaller problems. In coding terms, we would think of
+    loops, conditionals, and functions. This is the part where you
+    start writing high level pseudo code. E.g., 1) A while loop which
+    get's user input, 2) a for loop which tests each element, 3) an if
+    conditions which tests that =x>y=, 4) a function which does some
+    magic, 5) a print statement which shows the result.  You can do
+    this even though you may not know yet how to code the individual
+    blocks. 
+ 4. *Start with what you know:* This is like writing an exam. Always
+    start with the pieces you already know how to solve. In doing so,
+    you may find important clues on how to solve the pieces you don't
+    know.
+ 5. *Reduce the Problem:* Say you have to write a function which
+    converts any number into its binary notation. To simplify this
+    problem, you can state that your function will only deal with
+    positive integers. Or you can further simplify the problem to the
+    point that your function will only deal with numbers between 0 and
+    10 etc. Once you have an intermediate solution, you will have
+    gained much clarity on how to either solve the full problem, or
+    what specific questions to ask your peers or instructor.
+ 6. *Look for Analogies:* Often you may be able to reduce your problem
+    in such away that you can recognize that you already solved a
+    similar problem elsewhere. Consider the case of strings, which are
+    just a specific type of lists. The exact commands may not match,
+    but now you probably remember how to query the methods associated
+    with a list object, or that you need to ask the specific question
+    of "how do I replace the third element in a string".
+ 7. *Experiment:* Often it is useful to test the workings of a command
+    or code sequence in a separate cell.  The key techniques here are
+    the idea to isolate the code snippet from your main code, and to
+    test whether it actually does what you think it does. E.g.,
+    consider the following =a[3] :str= 4=. This may very well work in
+    your code, but it may not do what you expect. So a little
+    experiment can go a long way... Similarly, with new commands, test
+    and explore their use elsewhere before adding them to your code.
+ 8. *Don't get frustrated:* When you are frustrated, you won't think
+    clearly, and everything will take twice as long.  Take a walk,
+    rethink the problem (i.e. use the above steps), and come back to
+    the problem when you are ready. Then, you can try to reduce the
+    problem to it's most fundamental form, e.g., take the code out of
+    the function and run it in isolation, use print statements to
+    check whether your function parameters are indeed arriving inside
+    your function in the way you think. Once you have a minimal
+    example which show the problem, ask for help. Or if all else fail,
+    have a look at your plan and see if you can work on something
+    else.  To quote from Sprauls book:
+
+
+
+bibliographystyle:unsrtnat
+bibliography:literatur/journals-new.bib,literatur/new.bib,literatur/uli.bib,literatur/uli-with-students.bib

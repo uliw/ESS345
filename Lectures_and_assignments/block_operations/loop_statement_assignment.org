@@ -1,0 +1,154 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+* Loop Statement Assignment 
+You must copy this notebook to your submissions folder before editing
+it. Otherwise, your edits may be overwritten the next time you log
+into syzygy. Please name your copy
+"Loops-FirstName-LastName". 
+
+To submit your assignment, you need to download it and submit
+it to Quercus. You can delete this and the preceding paragraph
+afterward.
+
+Note, most of the text below renders as a single text cell. Thus it is
+not easy to answer the questions with more text of your own. However,
+you can split the existing text. Click the text cell you want to
+split, position the cursor to where you want to the split occur, and
+press the following keys at the same time "shift enter minus".  Leave
+the edit mode with shift enter, and you can now insert a new text cell
+with your answer below. Please use this method from now on.
+
+*Date:*
+
+*First Name:*
+
+*Last Name:*
+
+*Student: Id*
+
+
+Notes: 
+
+1) All questions should be solved with loop statements using if
+   statements, counters, and range expressions where appropriate.
+3) In order to answer these questions, add a code box after each question.
+4) Run your code and make sure it produces the requested result!
+5) Also, submit a pdf copy of your notebook (it should show the result
+   of each code execution).
+6) Remember that variables which you are using to count or to create
+   sums, have to be initialized to zero before using them.
+7) Marking scheme per question:
+   - 1 pt if the code produces the requested output
+   - 1 pt if the code is as requested
+
+Last but not least, execute the following statements so that these
+variables become known to your jupyter session
+
+#+BEGIN_SRC ipython
+my_text :str = "This is just some random text"
+my_numbers :list = [1, 6, 3, 2, 7, 9, 2, 3, 12, 1, 2, 3, 6, 5, 6, 7]
+my_l1 :str = "0101011"
+my_l1 :str = "0102011"
+#+END_SRC
+
+
+** Using loops to display elements in a list
+
+Use one code cell per question:
+
+ 1. Write a loop statement which displays all elements of =my_numbers=
+   (i.e., one element per line).
+ 
+ 3. Write a loop statement which displays all elements of =my_text= in
+   reverse. You should use a range expression in the for statement.
+ 4. Write a loop statement which displays every third element of
+   =my_text= You should use a range expression in the for statement.
+
+
+** Using loops to count elements in a list
+
+ 4. [@4] Write a loop statement which counts the number of all elements in
+    =my_numbers=
+
+** Using loops to calculate the sum of all elements in a list
+
+  Use one code cell per question: 
+
+   5. [@5] Write a loop statement which calculates the sum of all elements
+      in =my_numbers=
+   6. Write a loop statement which calculates the running total of all
+      elements in =my_numbers= (i.e., if your list looks like this [1,
+      2, 3, 4], you would first add 1 & 2 = 3, next you would add the
+      third element (ie. 3) to the sum (also 3), then you would add
+      the 4^{th} element(4) to the sum (now 6), etc. etc
+   7. Use a for loop with a range statement to print the square of all
+      even numbers from 0 to 10.
+
+** Combining loop and if statements
+
+Use one code cell per question:
+
+ 8. [@8] Write a loop statement which counts the number of all
+    elements in =my_numbers= which are equal to 3
+ 9. Write a loop statement which counts the number of all elements in
+    =my_text= which are equal to "s"
+ 10. Write a loop statement which counts the number of all elements in
+     =my_text= which are not "a"
+ 11. Write a loop statement which counts the number of all elements in
+     =my_numbers= which are equal smaller than 12
+ 12. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are equal to 3. In other words, you need to
+     calculate the total value of all numbers in =my_numbers= which
+     are smaller or equal to 3. If this is unclear please ask for
+     clarification.
+ 13. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are smaller than 12
+ 14. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are larger or equal to 6
+ 15. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are smaller or equal to 6 and larger than 2
+ 16. Write a loop statement which displays every third element of
+     =my_numbers= and the element which follows every 3^{rd} element. For
+     this, you will need a counter, and access the elements of
+     =my_numbers= by combining an index expression with an
+     if-statement (checkout your list module if in doubt). So you
+     should not use slicing syntax, or a range expression with a step
+     of 3. Your Output should look this:
+#+BEGIN_EXAMPLE
+3, 2
+9, 2
+12, 1 etc.
+#+END_EXAMPLE
+
+
+ 17. [@17] Write a loop statement which tests whether =my_l1= is a binary number or not
+ 18. Write a loop statement which tests whether =my_l2= is a binary
+     number or not
+
+
+** Using a loop to modify a list
+
+  19. [@19] Make a copy of =my_numbers= , and write a for statement
+      which replaces each list element of your copy by its
+      square. Note, that you should not modify the list you are
+      iterating over. Consider this example.
+      #+BEGIN_SRC ipython
+      list1 = [ 1, 2, 3]
+      for e in list1:
+	  list1.remove(e)
+      #+END_SRC
+      As you can see, removing elements from =list1= could really mess
+      with the for statement. So you need to separate the list you are
+      iterating over, from the list you are modifying. You can use
+      the list copy method to get a copy of the list
+      #+BEGIN_SRC ipython
+      list2 = list1.copy()
+      #+END_SRC
+
+

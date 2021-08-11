@@ -1,0 +1,284 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+** TODO
+
+explain how to split notebook. Also go back to see were this technique
+is required for the first time.
+
+
+* Print function assignment
+
+You must copy this notebook to your submissions folder before editing
+it. Otherwise, your edits may be overwritten the next time you log
+into syzygy. Please name your copy
+"print-function-FirstName-LastName". 
+
+In order to submit your assignment, you need to download it and submit
+it on Quercus. You can delete this and the preceding paragraph
+afterwards
+
+*Date:*
+
+*First Name:*
+
+*Last Name:*
+
+*Student: Id*
+
+
+All questions should be solved with the techniques introduces in the
+last module.
+
+1) Set a = to 12 and than write a python statement in such a way that
+   you get the following output (1pt). Note, I don't want you to type
+   a string with these words. Use an f-string and use the appropriate
+   syntax so that the actual value of a is printed.
+  #+BEGIN_EXAMPLE
+  The value of the variable a = 12
+  #+END_EXAMPLE
+
+#+BEGIN_SRC ipython
+a =12
+print(f" The value of the variable a = {a}")
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [2]: 
+# output
+ The value of the variable a = 12
+
+:end:
+
+
+2) Using the same code as above, include linefeed statements in such a
+   way that your printout is preceded and followed by an empty line (1pt).
+
+#+BEGIN_SRC ipython
+a =12
+print(f"\n The value of the variable a = {a}\n")
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [3]: 
+# output
+
+ The value of the variable a = 12
+
+
+:end:
+
+3) Using the same code as in 2, precede and follow the empty lines
+   with 40 dashes (see below). Note, that rather than typing (and
+   counting) 40 dashes declare a tuple with a single dash and than
+   multiply it 40 times (not sure this is proper style, but it
+   works). Your result should look like this (1pt).
+
+   #+BEGIN_EXAMPLE
+   ----------------------------------------
+   
+   The value of the variable a =
+   
+   ----------------------------------------
+  #+END_EXAMPLE
+
+#+BEGIN_SRC ipython
+t = ("-")
+l = 40 * t
+a =12
+print(f"{l}\n\n The value of the variable a = {a}\n\n{l}")
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [6]: 
+# output
+----------------------------------------
+
+ The value of the variable a = 12
+
+----------------------------------------
+
+:end:
+
+
+4) Modify the first and last print statement (not the tuple) in such a
+   way that you get this (1pt)
+
+   #+BEGIN_EXAMPLE
+   *----------------------------------------*
+   
+   The value of the variable a =
+   
+   *----------------------------------------*
+   #+END_EXAMPLE
+
+#+BEGIN_SRC ipython
+t = ("-")
+l = 40 * t
+a =12
+print(f"*{l}*\n\n The value of the variable a = {a}\n\n*{l}*")
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [7]: 
+# output
+*----------------------------------------*
+
+ The value of the variable a = 12
+
+*----------------------------------------*
+
+:end:
+
+1) Using the code in 4, add an escape sequence in front of "The
+   value...", so that this line is displayed with one tab to the
+   right. (1pt)
+
+#+BEGIN_SRC ipython
+t = ("-")
+l = 40 * t
+a =12
+print(f"*{l}*\n\n \tThe value of the variable a = {a}\n\n*{l}*")
+#+END_SRC
+
+   
+1) You are working on software for a point of sale system (i.e., cash
+   register). Your software knows about the sales price, as well as
+   how much cash you received from the customer. Write some python
+   code which calculates and displays the change owed. Your display
+   should read e.g.,
+   #+BEGIN_EXAMPLE
+   Change owed = $12.40
+   #+END_EXAMPLE
+   Notes: A) You code should correctly round the owed amount to the
+   nearest 10 cents, and display the cents as in the above example; B)
+   You should achieve this by using the appropriate format modifier
+   and by making good use of the f-string. Assume that the customer
+   provided a \$20 dollar bill, and that the price was \$7.63. Also test
+   you code with a price of \$7.67. (4pts)
+
+#+BEGIN_SRC ipython
+paid = 20
+price = 7.67
+change = paid - price
+message = f"Change owed ${change:0.1f}0"
+print(message)
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [10]: 
+# output
+Change owed $12.30
+
+:end:
+
+
+3) Using you code from 6) add code in such a way that you also
+   calculate HST on the price. (1pt)
+
+#+BEGIN_SRC ipython
+paid = 20
+price = 7.67
+HST = 0.13
+tax =   price * HST
+price_w_tax = price + tax
+change = paid - price_w_tax
+message = f"Change owed ${change:0.1f}0"
+print(message)
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [13]: 
+# output
+Change owed $11.30
+
+:end:
+
+1) Using you code from 7: Rather than printing the change owed, print
+   a proper receipt. Towards this end add a variable which describes
+   the item. Your output should look like this (note that the dollar
+   sign should all be aligned -- see the pdf version if in doubt)
+
+   #+BEGIN_EXAMPLE
+   Cheese        $7.63
+   HST           $
+   -------------------
+   Total         $
+
+   Paid          $
+   Change owed = $
+   #+END_EXAMPLE
+   Notes: A) you first need to calculate the HST! B) The dollar sign
+   of the price should be two tab stops to the right. The length of
+   the item description should be limited in such a way that it leaves
+   at least one blank between the item string and the price. Test this
+   by setting =item = "This is a really long time name"=. (4pts)
+
+#+BEGIN_SRC ipython
+item = "Cheese"
+paid = 20
+price = 7.67
+HST = 0.13
+tax =   price * HST
+price_w_tax = price + tax
+change = paid - price_w_tax
+
+print(f"{item:7s}\t\t${price:1.2f}") # need to remove one tab for
+                                       # long items. error in question
+                                       # posed
+print(f"HST\t\t${tax:1.2f}")
+print(f"---------------------")
+print(f"Total\t\t${price_w_tax:1.2f}\n")
+print(f"Paid\t\t${paid:1.2f}")
+print(f"Change owed\t${change:0.1f}0")
+#+END_SRC
+
+
+#+BEGIN_EXAMPLE
+Cheese 		$7.67
+HST		$1.00
+-------------------
+Total		$8.67
+
+Paid		$20.00
+Change owed	$11.30
+#+END_EXAMPLE
+
+
+3) The two statements below are fairly similar, yet, the result of the
+   print statement is rather different(execute this to see for
+   yourself). Why is this happening? Note, I am not asking that one
+   expression has commas, whereas the other has not. I am asking what
+   difference does the comma make? (4pts)
+
+#+BEGIN_SRC ipython
+a = (
+    f"This is string one\n"
+    f"This is string two\n"
+    f"This is string three\n"
+    )
+
+b = (
+    f"This is string one\n",
+    f"This is string two\n",
+    f"This is string three\n"
+    )
+
+print(a)
+print(b)
+#+END_SRC
+
+One is a tuple, the other a string
+
+

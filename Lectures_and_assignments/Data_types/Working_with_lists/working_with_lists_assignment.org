@@ -1,0 +1,96 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+OPTIONS: d:(not "results")
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+** TODO 
+
+ - expand use of list method
+ - add zip examples
+ - add advanced questions
+ - 
+
+
+* Assignment
+
+*ESS345H1 Computational Geology - Working with Lists*
+
+*Date:*
+
+*First Name:*
+
+*Last Name:*
+
+*Student: Id*
+
+You must copy this notebook to your submissions folder before editing
+it. Otherwise, your edits may be overwritten the next time you log into
+syzygy. Please name your copy "Working-with-lists-FirstName-LastName".
+
+To submit your assignment, you need to download it and submit
+it on Quercus in pdf and notebook format.
+
+Below you will find empty code cells in which you have to enter python
+code. Please use the respective cell below each question.  Where
+necessary, add text cells to enter your answers. Your answers will
+only count if the code executes without error. It is thus recommended
+to run your solutions before submitting the assignment.
+
+*Note: Do not type your answers by hand. Rather, write code which*
+*produces the answer, and your pdf should show the code as well as the
+results of the code execution!*
+
+Execute the following block so that =my_list= becomes known in your
+local Jupyter session.
+#+BEGIN_SRC ipython
+my_list = [3, 4, 5, 12, 0, 11, 1, 2, 9, 8, 7, 13, 10]
+a = 1024
+#+END_SRC
+
+Add here a text block where you enumerate (i.e., a numbered list) all user
+visible methods of the =my_list= object which have the *IN PLACE* warning in
+their help text (if in doubt, consult your working with list module on how to
+find out about this). There is no need to add a code cell, just list what you find (3pts).
+
+Which of the user visible methods associated with =a= can tell you how
+many bits are used to store the value of a? To answer your question,
+create a code block and type the relevant commands. Use comments where
+necessary. Lastly, assign a value of 4 to variable =a=. How many bits
+are used now compared to when the value of was 1024? Express your
+results also in bytes (4 pts).
+
+# Add a code block below, which shows 3 different ways to display =my_list= in
+# reverse order without modifying the actual order in =my_list=. You get 2 pts
+# each for the first 2 solutions, and 4pts if you can think of a third. All 3
+# approaches must have been discussed in class before, so esoteric solutions
+# found on the internet, do not count. A solution may require more than one
+# statement. *maybe drop this, its not clear"
+
+# #+BEGIN_SRC ipython
+# print(my_list)
+# my_list[::-1]
+# m_l = my_list.copy()
+# m_l.reverse()
+# m_r = my_list[::-1]
+# print(m_l)
+# print(m_r)
+# #+END_SRC
+
+Execute the following statement, and add a python statement which
+counts the occurrences of the number five in =long_list=). 1pt
+
+#+BEGIN_SRC ipython
+long_list = [2, 2, 5, 5, 0, 3, 3, 4, 3, 2, 4, 2, 4, 3, 3, 4, 2, 1, 5,
+             3, 0, 4, 4, 2, 4, 1, 1, 2, 1, 2, 0, 0, 0, 4, 2, 5, 5, 5, 0, 3, 4, 3,
+             3, 5, 3, 5, 2, 1, 0, 3, 3, 3, 0, 2, 3, 5, 4, 4, 4, 1, 5, 5, 5, 3, 5,
+             3, 0, 1, 1, 1, 4, 4, 0, 2, 2, 1, 4, 4, 3, 2, 0, 1, 1, 0, 3, 3, 0, 3,
+             0, 3, 4, 2, 3, 0, 2, 3, 5, 0, 4, 5]
+#+END_SRC
+
+
+
+

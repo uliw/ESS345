@@ -1,0 +1,15 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+OPTIONS: d:(not "results")
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage[round]{natbib}
+
+
+
+Test citation cite:Yao2018
+
+
+bibliographystyle:gca
+bibliography:literatur/journals-new.bib,literatur/new.bib,literatur/uli.bib,literatur/uli-with-students.bib

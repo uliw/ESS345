@@ -1,0 +1,113 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+* Assignment 
+
+\begin{Form}
+\TextField[width=4cm]{Date:} \\[1ex]
+\TextField[width=4cm]{First Name:} \\[1ex]
+\TextField[width=4cm]{Last Name:}  \\[1ex]
+\TextField[width=4cm]{Student ID:}  \\[1ex]
+
+
+This assignment will be a little different: Please work through
+
+=ESS345/Lectures_and_assignments/comparisons_and_logic_operations/comparisons_-and_logic=
+
+and then use this file for the assignment (so we will not be using the
+notebook file).
+
+Note that the assignment should be done by hand, i.e., you should
+predict the results based on your understanding, rather reporting the
+result of some code. Last year, we did this as an in class quizz, but
+that option is not available to us this year. So if you are curious about
+how well you understand the material, do this without the help of
+python. I will count on your honor and curiosity. You can however use
+the pdf version on the textbook to look up concepts (similar to an
+open book exam).
+
+You have two options to submit your assignment:
+
+A) You can fill out the pdf form and save it as
+   "comparisons-FirstName-LastName.pdf", and submit this on quercus. I
+   recommend to to take screenshots before submission, in case your
+   answers were not properly saved.
+
+B) You can print the above assignment on paper, and use a pencil to
+   write down you questions and than use an app to convert it back to
+   pdf
+
+   \begin{itemize}
+
+   \item Android: https://www.howtogeek.com/249200/how-to-combine-multiple-images-into-a-pdf-file-on-android/
+
+   \item IPhone: https://pdf.wondershare.com/mobile-app/free-photo-to-pdf-app.html
+   \end{itemize}
+
+
+1. The results of comparisons are reported as the logical (boolean)
+   values of either =True=, or =False=. Does the truth value equal
+   \TextField[width=4cm]{one or zero?} (1pt) 
+   
+2. How does your notebook indicate that =True=
+   \TextField[width=4cm]{has a special meaning?} (1pt)
+
+3.Let a be equal to 12, and b be equal to 12.0, will the following comparison result in a True or False value?
+     \TextField[width=4cm]{ a == b } (1pt)
+
+4. Edit the following lines and add the boolean value (i.e.,
+   True/False or error) for each statement.(11 pts)
+     \begin{itemize}
+     \item \TextField[width=4cm]{ 5 == 4  }
+     \item \TextField[width=4cm]{  2 != 3  }
+     \item \TextField[width=4cm]{  5 > 4  }
+     \item \TextField[width=4cm]{  5 < 4  }
+     \item \TextField[width=4cm]{  1 >= 1 }
+     \item \TextField[width=4cm]{  2 <= 2 }
+     \item \TextField[width=4cm]{ -12 <= -4 }
+     \item \TextField[width=4cm]{ True == True }
+     \item \TextField[width=4cm]{ True != False }
+     \item \TextField[width=4cm]{ True != true  }
+     \item \TextField[width=4cm]{  True > False }
+    \end{itemize}
+  
+6. Edit the following lines and add the boolean value (i.e.,
+   True/False) for each statement.  (11 pts).
+     \begin{itemize}
+     \item \TextField[width=4cm]{ True and True }
+     \item \TextField[width=4cm]{ True and False }
+     \item \TextField[width=4cm]{ False and False }
+     \item \TextField[width=4cm]{ False or True }
+     \item \TextField[width=4cm]{ True or False }
+     \item \TextField[width=4cm]{ not(True) or not(False) }
+     \item \TextField[width=4cm]{ not(True or False) }
+     \item \TextField[width=4cm]{ not(True) and not(False) }
+     \item \TextField[width=4cm]{ not(True and False) }
+     \item \TextField[width=4cm]{ not(True and False) or True }
+     \item \TextField[width=4cm]{ (True and True) or False }
+    \end{itemize}
+
+7. Edit the following lines and add the result for each statement.  (10 pts).
+     \begin{itemize}
+     \item \TextField[width=4cm]{ a = 5}
+     \item \TextField[width=4cm]{ b = 12}
+     \item \TextField[width=4cm]{ a > 0 and b > 0}
+     \item \TextField[width=4cm]{ a < 0 and b > 0 }
+     \item \TextField[width=4cm]{ a < 0 or  b > 0 }
+     \item \TextField[width=4cm]{ a < 0 or  b < 0  }
+     \item \TextField[width=4cm]{ not(a < 0) and  b > 0}
+     \item \TextField[width=4cm]{ not(a < 0) or   b > 0}
+     \item \TextField[width=4cm]{ not(a < 0 or b > 0) }
+     \item \TextField[width=4cm]{ not(a < 0 and b > 0) }
+    \end{itemize}
+   \end{Form}
+
+
+
+

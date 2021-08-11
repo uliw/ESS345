@@ -1,0 +1,106 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+OPTIONS: d:(not "results")
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+** Build :noexport:
+
+Run this to export the notebook without the results attached!
+
+#+BEGIN_SRC emacs-lisp
+(let ((ox-ipynb-preprocess-hook '((lambda () (org-babel-map-src-blocks nil (org-babel-remove-result))))))
+ (ox-ipynb-export-to-ipynb-file-and-open))
+#+END_SRC
+
+#+RESULTS:
+: #<window 126 on Python_for_a_non_technical_audience.org>
+
+
+* Assignment
+
+** Learning Outcomes
+ 
+ - get comfortable selecting subsets from list-type variables
+ 
+** Submission instructions
+
+#+INCLUDE: ./submission_instructions.org
+
+
+** Questions
+
+Execute the following block so that =my_list= becomes known in your
+local Jupyter session.
+#+BEGIN_SRC ipython
+my_list = [3, 4, 5, 12, 0, 11, 1, 2, 9, 8, 7, 13, 10]
+#+END_SRC
+
+
+Add a textbox here, and explain why the above statement does not
+produce any output. 2pts
+
+
+Write three python statements (one on each line), which will show the
+first, the last and the second last element of =my_list=). 3pts
+#+BEGIN_SRC ipython
+# Add your code here
+#+END_SRC
+
+Write python statement which shows the last 4 elements of =my_list=
+1pt
+
+#+BEGIN_SRC ipython
+# Add your code here
+#+END_SRC
+
+Write python statement which shows every 3rd element of =my_list=
+starting with the third element in the list. 2pts
+#+BEGIN_SRC ipython
+# Add your code here
+#+END_SRC
+
+
+Write python statement which shows every second element of the last 6
+elements in =my_list= 2pts. I suggest you first test your range
+expression with a step size of -1, to make sure you use the correct range
+#+BEGIN_SRC ipython
+# Add your code here
+#+END_SRC
+
+Write python statement which shows every second element of the last 6
+elements in =my_list= in reverse order 3 pts (i.e., you count
+backwards from the last list element, and then start with the second
+last element of this sub list)
+#+BEGIN_SRC ipython
+# Add your code here
+#+END_SRC
+
+What is the shortest slicing notation to show all values of =my_list= in reverse order. 2pts
+#+BEGIN_SRC ipython
+# Add your code here
+#+END_SRC
+
+Add a textbox below the codebox, and explain why the next two
+statements do not produce the same result 2pts
+#+BEGIN_SRC ipython
+print(my_list[0:])
+print(my_list[0:-1])
+#+END_SRC
+
+what is wrong with this python statement below? 1pt
+#+BEGIN_EXAMPLE
+my_list = [1 2 3]
+#+END_EXAMPLE
+
+
+
+** Marking Scheme
+
+Total points: 19
+
+ - 2 pts for correct notebook formatting
+ - 2 pts for correct notebook name
+ - 15 pts for the questions

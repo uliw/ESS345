@@ -1,0 +1,222 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+
+
+* Assignment
+Please submit your assignment as
+=Confidence_interval-Firstname-Lastname= in noteboook and pdf
+format. Add all the usual headers etc.
+
+In the previous module, we used linear regression analysis to build a
+simple linear model of the storks versus babies data (see
+Fig. ref:storksandbabies)
+#+name: storksandbabies
+#+caption: The storks versus babies data
+[[file:storks.png]]
+This figure, shows the data, the linear regression model, and a shaded
+area, which represents the 95% confidence interval. In the previous
+assignment, you added noise to linear data set, and explored how this
+noise affects the accuracy of the regression analysis. You observed
+that with increasing noise, the match between model and original data
+became worse. So the above confidence interval is the area where you
+can be 95% sure that your regression model fits your data. I.e., in
+your previous assignment, all orange lines would fit inside this
+envelope. In other words, your regression analysis finds the best fit,
+but depending how noisy your data is, there is uncertainty whether the
+best fit is also the true fit. This uncertainty is expressed by the
+shaded confidence interval.
+
+Note that this is different from the uncertainty of a prediction you
+base on your regression model. This so called prediction interval is
+much larger. But back to our original problem. We want to create some
+code wich allows us to plot this confidence interval. There is no
+ready made solution, but with a bit of numpy magic, we can create our
+own!
+
+The shaded area in the above figure, is a polygon. If you were to draw
+this by hand, you would first draw the outline, and then fill it with
+color. The following figure illustrates this approach:
+#+name: polygon
+#+caption: A polygon is drawn by following it's outline either clockwise or anticlockwise
+[[file:polygon_n.png]]
+
+the key here, is that we have to draw in a consistent direction,
+either clockwise, or anticlockwise (you remember those drawing by
+numbers books?). We will look into the details of this below. But
+first we need to get the data from our regression model.
+
+Add code in the below box which reads the water depths (mbsl) versus
+fractionation factor data you used before. Note that the dataset
+contains a variable which is called =depth=. This is the depth below
+the seafloor. The water depth is provided by the variable =mbsl=
+(meters below sealevel)
+#+BEGIN_SRC ipython
+# read data
+#+END_SRC
+
+next, create a linear regression analysis of this data which treats
+water depth (mbsl) as the independent variable, and the fractionation factor
+alpha as the dependent variable.
+#+BEGIN_SRC ipython
+# regression model
+#+END_SRC
+
+now, we create the model predictions, first the simple linear
+prediction, and then we extract the confidence intervals we will use
+for our polygon. I recommend to start with a small number of predicted
+values, say 5. If all works well, you can increase the number for your
+final submission. Below the relevant code to handle the stats
+model. BTW, Execute the =dict(mbsl=nx)= piece in a separate cell to
+see what it does.
+#+BEGIN_SRC ipython
+# create predictions
+nx :np.array =  # create 5 values between min-x and max-x
+
+# create a prediction at the nx locations see the documentation for
+# statsmodels.regression.linear_model.OLSResults.get_prediction
+# the function returns a linear_model.PredictionResults type
+# which is so long that I dropped here from the type hint. 
+prediction = results.get_prediction(exog=dict(mbsl=nx))
+
+# extract the confidence intervals. The default is the 95% interval
+# you can set other values, see the documentation for
+# statsmodels.regression.linear_model.PredictionResults.conf_int
+
+ci :np.array = prediction.conf_int()
+print(f" ci = {ci}") 
+#+END_SRC
+This should yield a 2-dimensional array with 10 numbers. The below
+numbers are for the stork examples, so your numbers will be different,
+but it should look like this:
+#+BEGIN_EXAMPLE
+ci = [[  25.60903207  424.44834033]
+ [ 262.42790764  619.53409124]
+ [ 393.92939094  919.93723441]
+ [ 483.47868295 1262.29256887]
+ [ 560.36720228 1617.30867601]]
+#+END_EXAMPLE
+The first row, contains the lower boundary values at =nx(i)=, and the
+second row contains the upper boundary values at =nx(i)=. So this data
+is missing the x-coordinates, and it is not yet in a format which can
+be used by the polygon function of matplotlib.
+
+As we have seen above, in order to plot a polygon, we need a sequence
+coordinate pairs (typically called vertices) for each polygon point,
+and this sequence must be ordered in such a way that it describes the
+polygon either in clockwise or counter-clock wise direction (see the
+above figure).
+
+Here is what needs to be done:
+#+BEGIN_SRC ipython
+# extract lower and upper boundary values
+#+END_SRC
+
+#+BEGIN_SRC ipython
+# combine them into a new 1-d array in such way that they describe the
+# polygon in counter clockwise fashion
+#+END_SRC
+
+#+BEGIN_SRC ipython
+# Create a new vector of x-values which corresponds to the polygon
+# values in the previous cell
+#+END_SRC
+
+#+BEGIN_SRC ipython
+# combine your new x and y values into a 2-dimensional array of
+# vertices.  I.e. the first columns contains the x-values, and the 2nd
+# column contains the y-values.
+#+END_SRC
+The below numbers are from the stork example, so your numbers will be
+different, but you can see how this array describes the locations of
+the numbers 1 to 6 in the above figure:
+#+BEGIN_EXAMPLE
+coords = [[0.00000000e+00 2.56090321e+01]
+          [7.50000000e+03 2.62427908e+02]
+          [1.50000000e+04 3.93929391e+02]
+          [2.25000000e+04 4.83478683e+02]
+          [3.00000000e+04 5.60367202e+02]
+          [3.00000000e+04 1.61730868e+03]
+          [2.25000000e+04 1.26229257e+03]
+          [1.50000000e+04 9.19937234e+02]
+          [7.50000000e+03 6.19534091e+02]
+          [0.00000000e+00 4.24448340e+02]]
+#+END_EXAMPLE
+
+
+last but not least, let's create the final figure.  A couple pointers though:
+
+ 1) First create your regular regression graph (6 by 4 inches, dark
+    grid style, proper axis labels with units, no title, no legend,
+    but include the regression parameters similar to
+    Fig. ref:storksandbabies, and the regression line
+ 2) The polygon method is not part of matplotlibs pyplot interface, so
+    you need to import it separately (see the below code snippet)
+ 3) The polygon is made transparent withe alpha parameter (from 0 to
+    1). You still need to pay attention what is plotted first and last
+ 4) Adding polygon to a plot does not update the plot axis limits. So
+    if there is no other data in the plot you need to set the axis
+    limits explicitly.
+
+
+#+BEGIN_SRC ipython
+import matplotlib.pyplot as plt
+from matplotlib.patches import Polygon
+
+# create the polygon
+pol :Polygon = Polygon(coords,alpha=0.2)
+
+# add the polyon to the plot
+ax.add_patch(pol)
+
+print(type(pol))
+#+END_SRC
+
+
+For the second part of your assignment, create:
+
+ - a function which takes the output of =prediction.conf_int()= as
+   argument and returns a list vertices which can be used by the
+   polygon function function.
+ - The function should be fully annotated, have a doc-string, use type
+   hinting etc.
+ - Recast your so that it uses this function and place your code into
+   a single cell using the below template. 
+   #+BEGIN_SRC ipython
+   """
+   Description:
+   Purpose:
+   Author:
+   Date:
+   """
+   # ----------- third party library imports ------------------
+
+   # ----------- functions definitions  -----------------------
+
+   # ----------- main program ---------------------------------
+   # --- variable declarations
+
+   # --- code starts here
+   #
+   #+END_SRC
+
+
+Marking Scheme (23 pts)
+
+ - read data: 2pts
+ - regression model: 2pts
+ - predictions: 2pts
+ - upper and lower boundary values: 2pts
+ - Vector of increasing and decreasing x-values: 2pts
+ - 2d-arrays with correct vertices: 2pts
+ - regular regression plot with regression line (1pt), regression parameters (1pt), correct layout and labels (1pt)
+ - Correctly plotted polygon (4pt)
+ - Correctly working function with docs string, type hints, etc. 4pts
+

@@ -1,0 +1,152 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+
+* Assignment
+
+Notes: 
+   * Create a notebook in your submissions folder with this name:
+     "pandas-series-FirstName-LastName". In order to submit your
+     assignment, you need to download it and submit it on Quercus
+     (ipynb and pdf format).  Please
+     have the usual header with date, name etc.
+ 
+   * Marking Scheme (per question):
+     - All variables declared and type hinting used throughout 1pt. No partial marks
+     - Code produces correct output 2pt. 1pt if code is sort of correct
+     - Proper use of comments 1pt. There is no need for doc-strings
+       though
+     - Code is self contained 1pt.
+     - Doc strings for functions explain what the function does,
+       explain all parameters, explain all return values. 1pt.
+     - Max points per question: 6 pts for a total of 6*3 = 18 pts
+     - Last question is 14 pts. See details there.
+     - Total number of points: 32
+
+The goal for this assignment is twofold: A) Some of the tasks are new,
+and you will have to find supporting documentation by yourself. B) To
+get more comfortable in translating equations to python code. Both
+will improve your coding game considerably.
+     
+** Exercises:
+Use the code snipped in the previous chapter to create a dataframe
+with 15 rows and 4 columns, named A, B, C, D. Use this dataframe for
+all questions below. For each answer, please write self contained
+code, that is, it imports all libraries, declares all variables,
+imports all data, etc., rather then writing code which relies on data
+imported in a previous cell. Cut copy paste is your friend here. Note,
+your function should be able to deal with arbitrary length series.
+
+
+ 1) Using the above methods, find a way to set all values in A which
+    are smaller than say 4 to 0. Write the result into a new variable
+    =X=, rather then replacing the values in A. Note, do not use
+    builtin methods like replace for this operation, nor use a
+    loop (hint: use a boolean expression).
+
+
+ 2) [@2] Write a short function and code snippet which calculates the
+    mean of a pandas series containing numbers. Do not use the builtin
+    functions or the pandas method for mean. Rather use your own code
+    to compute the $\mu$ mean as
+    \begin{equation}
+    \mu = \frac{\sum\limits_{i=0}^{i=N} X_i}{N}
+    \end{equation}
+    the capital sigma sign on the right side is the math symbol for a
+    sum, the subscript =i= refers to the index of a given vector
+    element, $X_i$ denotes an individual element (i.e. =X[i]=) and N is
+    equal to the number of elements in the series. In the equation
+    above I added the index expression to highlight the relation
+    between the equation and a pandas series, however, often you will
+    see the abbreviated form which means the same thing, but is faster
+    to write
+     \begin{equation}
+    \mu = \frac{\sum X_i}{N}
+    \end{equation}
+    call your function and compare the result against the mean values
+    as returned by the pandas mean method, e.g.:
+    #+BEGIN_SRC ipython
+    print(f"The mean value of A using my_mean = {my_mean(A)}")
+    print(f"The mean value of A using A.mean() = {A.mean()}")
+    #+END_SRC
+
+
+  3) [@3] As before, but now we will compute the population standard
+     deviation sigma ($\sigma$) which is defined as
+     \begin{equation}   
+      \sigma = \sqrt{\frac{\sum (X_i - \mu)^2}{N-1}}
+     \end{equation}
+     where $\mu$ is the mean value. Note, since your code regenerates
+     the dataframe from random numbers each time, you need to compute
+     $\mu$ each time. Thus, this code also needs to define =my_mean()=
+     (you can obviously cut/copy/paste).  Again, your code should be
+     self contained, and compare your result against the builtin
+     pandas series method =A.std=.
+     
+Do not use loops!
+
+ 
+
+  4) [@4] Write a program which imports the
+     isotope data from the last lecture as dataframe. Extract the delta
+     values as pandas series. Next, use the following two equations to
+     first split the delta values (=d34S= in the spreadsheet) into $^{32}S$
+     and $^{34}S$ and append the results to the dataframe as two new
+     columns (=S32= and =S34=). Next compute the delta values from $^{32}S$
+     and $^{34}S$,
+       \begin{equation}
+       ^{32}S = \frac{1000}{(\delta +1000) \times R + 1000}
+       \end{equation}
+       \begin{equation}
+       ^{34}S = \frac{(\delta + 1000) \times R}{(\delta + 1000) \times R + 1000}    	
+       \end{equation}
+       \begin{equation}
+       \delta^{34}S = \left(
+	 \frac{
+           \left(\frac{^{34}S}{^{32}S}\right) _{Sample}}
+	 {R}
+	  -1
+	 \right) \times 1000 \quad [^0/_{00}]
+       \end{equation}
+       and append the results to the dataframe as a new column called
+       =delta-new=. Compute the difference between the original and the
+       new delta (it should be very small or zero). Export the data
+       frame to a csv file.  Again, do not use loops, import whatever
+       you need, declare all variables, add docstrings to your function
+       definitions, use comments, and type hinting. Use an R-value of
+       =R=0.044162589=. Remember to break down any coding task into a
+       set of smaller steps which you can develop and test individually.
+
+       Use the following template to organize your code. The example
+     and limitation lines are optional and mostly apply to functions
+       #+BEGIN_SRC ipython
+       """ Description:
+       Purpose
+       Example: (provide an example how to call your code)?
+       Limitations: (Are there cases your code does not handle)?
+       Author:
+       Date:
+       """
+       # ----------- third party library imports ------------------
+
+       # ----------- functions definitions  -----------------------
+
+       # ----------- main program ---------------------------------
+       # --- variable declarations
+
+       # --- code starts here
+       #
+       #+END_SRC
+
+
+
+
+
+

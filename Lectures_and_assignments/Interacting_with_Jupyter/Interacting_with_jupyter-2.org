@@ -1,0 +1,191 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: Noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{Newuli}1
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+#+latex_header: \usepackage{makeidx}}
+
+
+* ESS345 Computational Geology: Interacting with Jupyter 2
+  :PROPERTIES:
+  :Attachments:
+  :ID:       4139ac42-f104-4a75-a1b1-076a16d0c563
+  :END:
+
+
+
+
+
+Since Jupyter notebooks will be the primary tool, we use in this
+course, and the dominant format for your assignment submissions, we
+will explore their use in greater detail in the following.
+
+A Jupyter notebook has three principal elements see Fig.ref:nbexample
+
+1) Text areas (often referred to as cells). You can edit these text-cells.
+2) Code blocks (or code cells). These contain computer code which can
+   be executed. You can edit and execute these cells.
+3) Result Blocks, which contain the output produced by a code
+   block. Results blocks cannot be edited. However, you can select and
+   copy them.
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: nbexample
+#+caption: An example of a Jupyter notebook (.ipynb file) including text areas, 
+#+caption: code blocks and result blocks. After double left click on the cell,
+#+caption: the cell will be ready for editing (and the bar will change to green)
+[[./Tianshi/TL-fig-003.png]]
+
+If you are still reading this as pdf, please switch to the notebook
+version of this very text. Go to your jupyter home directory, and then
+go to =ESS345=, =Lectures_and_assignments=,
+=Interacting_with_Jupyter=, and select
+=Interacting_with_Jupyter-2.ipynb= which should you bring right back
+to this text. Now, you can follow the instructions below:
+
+If you do a single left click with your mouse on this text, you will
+see that this cell is now drawn with a black border and a blue marker
+on the left. This indicates that the cell has been selected (see Fig.ref:nbselected)
+
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: nbselected
+#+caption: A single click will select a notebook cell, which is indicated by the blue border to left.
+[[./figures/Screenshot_20200527_133749.png]]
+
+
+If you double left click on this cell, you will see that the cell
+background changes to gray, and the text will be rendered in a
+typewriter font. This indicates that you are now in editing mode. You
+can leave the editing mode any time by hitting =Shift-Enter=.
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: nbediting
+#+caption: A double click on any cell, will active the editing mode.
+#+caption:  You can leave the editing mode any time by hitting =shift-Enter=.
+[[./figures/Screenshot_20200527_133820.png]]
+
+Also, the most of the usual keyboard shortcuts will work:
+  - Ctrl-z = undo
+  - Ctrl-c = copy
+  - Ctrl-x = cut
+  - Ctrl-v = insert
+
+** Potential Problems
+Sometimes, it can happen that you loose the connection to the Jupyter
+server. This is indicated by the red =Not Connected= icon in the
+status bar (see Fig.ref:noconn).  This is usually caused by a firewall
+rule. Please speak to a TA or the instructor to resolve this issue.
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: noconn
+#+caption: The red =not connected= icon indicates that you lost connection to your Jupyter Server.
+#+caption: This is usually caused by a firewall rule. Please speak to a TA or the instructor to resolve
+#+caption: this issue.
+[[./figures/Screenshot_20200527_134756.png]]
+
+
+
+** Formatting Text
+Before exploring how-to-use Jupyter notebooks to run python code,
+let's explore how to format the text in the text cells. Create  a
+new notebook in your =My_stuff= folder. You can do this via the drop
+down list called =New= in the upper right corner, and then select
+=Python 3=, and rename the new file. These steps should now pose no
+problem to you. If they do, please speak up!
+
+Once you new notebook is open, it will look like
+Fig. ref:nbfirst. Notice the text =In [ ]:= on the left side. This
+tells you that this a code cell which expects python code. So before
+we start playing with text, we need to change the cell type (see Fig. ref:celltype)
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: nbfirst
+#+caption: The default view when opening a new notebook. 
+#+caption: Note the text =In [ ]:= on the left side. This tells you that this
+#+caption: is a code cell which expects python code. 
+[[./figures/Screenshot_20200527_145057.png]]
+
+Use the dropdown menu to change the cell type to =markdown=.
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: celltype
+#+caption: Use the dropdown menu to change the cell type to =markdown=
+[[./figures/Screenshot_20200527_150324.png]]
+
+
+Once you have changed the cell to markdown, you will note that the =In
+[ ]:= text on the left is now gone.
+
+Next copy the following lines into your new note book cell:
+
+  
+** This is a second level heading
+  
+This is *bold* text
+
+  1) This is a simple list
+     - First list entry
+     - Second list entry
+  2) This is the 3rd entry in the enumerated list and has no other
+   purpose than just being the 3rd entry. 
+
+You will notice that the formatting has been lost. Go back to these
+instructions, activate editing mode, and explore how to create the
+formatting you see (see Fig.ref:mdsyntax) . Now go to your new
+notebook, and apply the =mark down= syntax in your own notebook.
+@@latex:\index{Markdown Syntax}@@. Remember that you can leave the
+edit mode any time by hitting =Shift+Enter=.
+
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: mdsyntax
+#+caption: Here you can see how to format your text with =mark down= syntax
+[[./figures/Screenshot_20200527_153811.png]]
+
+
+You may have noted that the list nesting is achieved by merely
+indenting the text after "This is a simple list". There are many more
+formatting options, but for this course, we likely won't need them,
+but feel free to have a look at [[https://guides.github.com/features/mastering-markdown/][this link]].
+
+*Last but not least* save your edits by clicking on the floppy disk
+icon in the upper left corner. This will create a checkpoint, so that
+you can return to this version at any time!
+
+ 
+** Adding Code cells
+Now let's try adding a code cell below the text cell and enter a
+trivial statement like =1 + 1= and hit =Shift+Enter= and you should
+see the result being displayed below the code cell (hopefully it is
+2). Go ahead and edit your code cell (e.g., 1+3) and hit =Shift+Enter=
+again. The result should change accordingly (see Fig.ref:codesnap)
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: codesnap
+#+caption: Example of a trivial python statement
+[[./figures/Screenshot_20200527_161029.png]]
+
+*Note that your edits are not auto-saved! Yo need to explicitly use the
+floppy disk icon (leftmost, directly under =File=) to save your work!*
+
+** Downloading your notebook
+All of your assignments will have to be submitted on Quercus. In order
+to mark your assignments, you need to submit a pdf copy, as well as
+the actual notebook file. This is easily done via the =File= dialogue
+(see Fig. ref:fdialog)
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: fdialog
+#+caption: You can download the notebook in a variety of formats. 
+[[./figures/Screenshot_20200527_161555.png]]
+
+
+** Recap
+In this module, you learned how-to:
+
+1) Create a notebook @@latex:\index{notebook!creation}@@
+2) Save a notebook @@latex:\index{notebook!saving}@@
+3) Download a notebook @@latex:\index{notebook!download}@@
+4) Create text cells  @@latex:\index{notebook!create text cell}@@
+5) Edit and format text cells  @@latex:\index{notebook!text cell!edit}  \index{notebook!text cell!format}@@
+6) Create code cells @@latex:\index{notebook!code cell!create}@@
+7) Execute code in a code cell  @@latex:\index{notebook!code cell!execute}@@
+8) Add a new code cell  @@latex:\index{notebook!code cell!add}@@
+
+
+

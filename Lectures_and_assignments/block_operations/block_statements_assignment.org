@@ -1,0 +1,191 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+* TODO Be careful to introduce indirection!
+
+
+* Block Statement Assignment 
+You must copy this notebook to your submissions folder before editing
+it. Otherwise, your edits may be overwritten the next time you log
+into syzygy. Please name your copy
+"comparisons-FirstName-LastName". 
+
+In order to submit your assignment, you need to download it and submit
+it on Quercus. You can delete this and the preceding paragraph
+afterwards.
+
+Note, most of the text below renders as a single text cell. Thus it is
+not easy to answer the questions with more text of you own. However,
+you can split the existing text. Click the text cell you want to
+split, position the cursor to where you want to the split occur, and
+press the following keys at the same time "shift enter minus".  Leave
+the edit mode with shift enter, and you can now insert a new text cell
+with your answer below. Please use this method from now on.
+
+*Date:*
+
+*First Name:*
+
+*Last Name:*
+
+*Student: Id*
+
+
+Notes: 
+
+1) All questions should be solved with loop and if statements,
+   counters, and range expressions
+2) All statements should use type hinting, and short comments where
+   appropriate
+3) In order to answer these questions, add a code boxes after each question.
+4) Run your code and make sure it actually produces the requested result!
+5) Also submit a pdf copy of your notebook (it should show the result
+   of each code execution).
+6) Remember that variables which you are using to count or to create
+   sums, have to be initialized to zero before using them.
+7) Marking scheme per question:
+   - 1 pt for using type hinting
+   - 2 pts if the code produces the requested output
+
+Last but not least, execute the following statements so that these
+variables become known to your jupyter session
+
+#+BEGIN_SRC ipython
+my_text :str = "This is just some random text"
+my_numbers :list = [1, 6, 3, 2, 7, 9, 2, 3, 12, 1, 2, 3, 6, 5, 6, 7]
+my_l1 :str = "0101011"
+my_l1 :str = "0102011"
+#+END_SRC
+
+
+** Using loops to display elements in a list
+ 1. Write a loop statement which display all elements of =my_numbers=
+   (i.e., one element per line).
+ 2. Write a loop statement which displays all elements of =my_text= in
+   reverse. You should use a range expression in the for statement.
+ 3. Write a loop statement which displays every third element of
+   =my_text= You should use a range expression in the for statement.
+
+
+
+
+** Using loops to count elements in a list
+
+ 4. [@4] Write a loop statement which counts the number of all elements in
+    =my_numbers=
+
+
+
+
+** Using loops to calculate the sum of all elements in a list
+   5. [@5] Write a loop statement which calculates the sum of all elements
+      in =my_numbers=
+
+
+** Combining loop and if statements
+
+ 6. [@6] Write a loop statement which counts the number of all
+    elements in =my_numbers= which are equal to 3
+ 7. Write a loop statement which counts the number of all elements in
+    =my_text= which are equal to "s"
+ 8. Write a loop statement which counts the number of all elements in
+    =my_text= which are not "a"
+ 9. Write a loop statement which counts the number of all elements in
+    =my_numbers= which are equal smaller than 12
+ 10. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are equal to 3
+ 11. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are smaller than 12
+ 12. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are larger or equal to 6
+ 13. Write a loop statement which calculates the sum of all elements
+     in =my_numbers= which are smaller or equal to 6 and larger than 2
+ 14. Write a loop statement which displays every third element of
+     =my_nymbers= and the element which follows every 3^{rd} element. For
+     this, you will need a counter, and access the elements of
+     =my_numbers= by combining an index expression with an
+     if-statement (checkout your list module if in doubt). Your Output
+     should look this:
+#+BEGIN_EXAMPLE
+3, 2
+9, 2
+12, 1 etc.
+#+END_EXAMPLE
+
+
+ 15. [@15] Write a loop statement which tests whether =m_l1= is a binary number or not
+ 16. Write a loop statement which tests whether =m_l2= is a binary
+     number or not
+
+
+** Using a loop to modify a list
+
+  16. [@16] Make a copy of =my_numbers= , and write a for statement which
+      replaces each list element of your copy by its square
+
+
+*** The special case of the while loop
+While loops are essentially infinite loops, which will keep looping
+until you turn them off with a switch. Rather than a physical switch, we
+use truth values (aka boolean variables). Consider this example
+#+BEGIN_SRC ipython
+s :bool = False # this is out switch
+
+while s:
+    print("Still here")
+#+END_SRC
+executing the above code will do nothing, since we never turned the
+switch on.
+
+Now let's try this. 
+#+BEGIN_SRC ipython
+s :bool = True # this is out switch
+n :int  = 0    # a counter
+while s:
+    if my_numbers[n] == 3:
+        print(f"my_numbers[{n}] = {my_numbers[n]}")
+        s = False
+    n = n + 1
+#+END_SRC
+So this code will run the while loop until it finds the first number
+which equals 3. At this point, we will set the switch s to =False= and
+the loop will stop. Infinite loops are a bit tricky. If you get your
+logic wrong, they will run forever (i.e., say your counter was inside
+the if statement, and as such, n would always be zero, so the if
+clause would always be 1 == 3 which is False .... happened to me!) If
+that happens to you go to the kernel menu, and restart your notebook
+kernel.
+
+While statements are however super useful if you wait for something to
+happen. Say your code waits for user input, or you read data until
+there is no more data etc. Have a look a this example
+#+BEGIN_SRC ipython
+a :bool = True   # We use this criterion for the while loop
+answer :str = "" # the user input as a string
+prompt :str = "Please enter a binary number \nExit by hitting the s-key"
+
+while a: # do this as long as a = True
+    answer = input(prompt) # get user input
+    if answer == "s":
+       a = False # this will end the while loop
+       print("\nGood bye\n")
+    else:
+        print(f"You entered '{answer}'")
+#+END_SRC
+
+ 17. [@17] Now, modify this while loop in a such a way, that you add a
+     test which decides whether the user input was indeed a binary
+     number or not. If not, print the string and inform the user that
+     this was not a binary number, and ask for new input. If yes,
+     print a success message (including the number), and exit the
+     loop. You output should look like one of the following lines:
+#+BEGIN_EXAMPLE
+"02201" is not a binary number
+"0010" is the binary form of 2
+#+END_EXAMPLE
+

@@ -1,0 +1,201 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+OPTIONS: d:(not "results")
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+* Other Data Types
+
+Python knows a variety of data types, many of which we may never
+use. However, the most important ones should at least be mentioned:
+
+
+** Vectors versus Lists
+If you have used matlab before, you will be familiar with
+vectors. Unlike matlab, python does not have a native vector type.
+Lists, can contain almost anything (e.g., other list, strings, and any
+of the types below).  Vectors, however, can only contain numbers and
+support mathematical methods (i.e., multiplying two vectors will give
+you the cross product). We will learn how to use vectors in a later
+module.  @@latex:\index{vectors}
+\index{variable!types!vectors}\index{matlab}@@
+
+
+** Tuples
+ @@latex:\index{tuples} \index{variable!types!tuples}@@
+Python tuples are a special version of a list, which won't allow you
+to modify the value of a list element. We define a tuple by declaring
+the list with regular brackets rather than square brackets.
+#+BEGIN_SRC ipython
+my_list = [1, 2, 4]       # a regular list
+my_tuple_list = (1, 2, 3) # a tuple list
+#+END_SRC
+
+#+RESULTS:
+: # Out [1]: 
+
+We access elements of a tuple via index or range operations similar to
+regular list
+#+BEGIN_SRC ipython
+print(my_tuple_list[1]) # note the square brackets for the index expression!
+#+END_SRC
+
+#+RESULTS:
+: # Out [2]: 
+: # output
+: 2
+: 
+
+however, unlike lists, *you cannot change the values in a tuple!*
+#+BEGIN_SRC ipython
+my_tuple_list[1] = 3
+#+END_SRC
+
+#+RESULTS:
+: # Out [3]: 
+: # output
+: 
+: TypeErrorTraceback (most recent call last)
+: <ipython-input-3-8f4ccf4652d1> in <module>
+: ----> 1 my_tuple_list[1] = 3
+: 
+: TypeError: 'tuple' object does not support item assignment
+
+While you cannot change the value of a tuple, it is possible to join two tuples to create a new tuple.
+#+BEGIN_SRC ipython
+my_first_tuple = (1, 2, 3)
+my_second_tuple = (3, 8, 7)
+my_list = [12, 13, 14]
+new_tuple = my_first_tuple + my_second_tuple
+print(new_tuple)
+#+END_SRC
+
+#+RESULTS:
+: # Out [1]: 
+: # output
+: (1, 2, 3, 3, 8, 7)
+: 
+
+** Sets
+ @@latex:\index{sets} \index{variable!type!sets}@@
+Sets are more like regular lists, but are declared with curly braces.
+Unlike lists you can only add unique
+elements. If there are duplicates, they will be ignored. 
+#+BEGIN_SRC ipython
+my_set = {1, 2, 3, 3}
+print(my_set)
+#+END_SRC
+
+#+RESULTS:
+: # Out [5]: 
+: # output
+: {1, 2, 3}
+: 
+
+Another important difference is that sets are not indexed. I.e. you
+cannot write =my_set[1]= Set elements can be added, removed, and
+changed. Furthermore, sets provide for all sorts of exciting
+operations (i.e., union, difference, intersection, subset etc.). A practical
+example how to use sets would be the following case. You have the list
+of students enrolled in ESS224H1 Introduction To Mineralogy And
+Petrology, and the list off students who are enrolled in ESS262H1
+Earth System Processes. If both are a set, you can use a single
+command to find out who is enrolled in both courses:
+#+BEGIN_SRC ipython
+ESS224 = {"Maria", "Stuart", "Andy", "Drew"}
+ESS262 = {"James", "Mark", "Alex", "Maria", "Silvy", "Stuart"}
+ESS224.intersection(ESS262)
+#+END_SRC
+
+#+RESULTS:
+: # Out [2]: 
+: # text/plain
+: : {'Maria', 'Stuart'}
+
+or, imagine that you have two e-mail lists, and you want to join both
+list and you ant to make sure that people do not receive the e-mail in duplicate
+#+BEGIN_SRC ipython
+ESS224 = {"Maria", "Stuart", "Andy", "Drew"}
+ESS262 = {"James", "Mark", "Alex", "Maria", "Silvy", "Stuart"}
+ESS224.union(ESS262)
+#+END_SRC
+
+#+RESULTS:
+: # Out [3]: 
+: # text/plain
+: : {'Alex', 'Andy', 'Drew', 'James', 'Maria', 'Mark', 'Silvy', 'Stuart'}
+
+
+
+** Dictionaries
+ @@latex:\index{dictionaries} \index{dictionaries!key}
+ \index{key!dictionaries}@@
+ @@latex:\index{variable!type!dictionaries}@@ Dictionaries are a
+ datatype which enable you to look up values based on a key, rather
+ then index. Each dictionary entry consists of a key-value pair. The
+ key can be a number, a string, or tuple, and the value can be pretty
+ much anything (e.g., a value, a string, a list, another
+ dictionary...). Let's consider this simple example:
+#+BEGIN_SRC ipython
+in_class_quiz = {"Domenica" : 72,
+                 "Brian" : 77,
+                 "George" : 95,
+                 "Liz" : 81}
+#+END_SRC
+
+#+RESULTS:
+: # Out [6]: 
+
+
+We can query the dictionary to see how individual students performed
+in the quiz. However, rather than referring to the result by
+a numeric index, we use the key
+#+BEGIN_SRC ipython
+print(in_class_quiz["Brian"])
+#+END_SRC
+
+#+RESULTS:
+: # Out [7]: 
+: # output
+: 77
+: 
+
+
+Note that the key needs to be unique, otherwise, you will override the
+earlier definition.
+#+BEGIN_SRC ipython
+in_class_quiz = {"Domenica" : 72,
+                 "Brian" : 77,
+                 "George" : 95,
+                 "Brian" : 50,
+                 "Liz" : 81}
+print(in_class_quiz["Brian"])
+#+END_SRC
+
+#+RESULTS:
+: # Out [8]: 
+: # output
+: 50
+: 
+
+similar to lists, we can change individual values by referring to
+their key.
+#+BEGIN_SRC ipython
+in_class_quiz["Brian"] = 70
+print(in_class_quiz["Brian"])
+#+END_SRC
+
+#+RESULTS:
+: # Out [9]: 
+: # output
+: 70
+: 
+
+
+
+

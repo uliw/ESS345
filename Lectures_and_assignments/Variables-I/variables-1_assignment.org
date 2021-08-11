@@ -1,0 +1,158 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+
+* Assignment
+
+** Learning Outcomes:
+
+ - play with the various ways to assign a value to a variable
+ - explore the difference between variable assignment and the equal sign in symbolic math
+ - gain a basic understanding of the python error message format
+ - understand how python treats operator precedence
+
+** Assigning a value to a variable
+Add a *text* cell and cut copy paste this text
+#+BEGIN_EXAMPLE
+# Assume that 
+a = 4
+
+# if you now write
+a = a + 1
+#+END_EXAMPLE
+
+and describe in your own words what you would get if you were to
+execute print(a) afterwards?  Please consider this first without
+executing the. Write down your expected result, and explain why you
+expect this.
+
+Next, add a =python 3= cell to your notebook and execute the above code,
+followed by a new text cell where you write down the expected value
+versus the observed value. Can you explain your results?  And if you
+can't explain it, could you speculate? Please write down your
+thoughts.
+
+Execute this code
+#+BEGIN_EXAMPLE
+a = 4
+b = 5
+c = 10
+a = (a / b) * c
+print(a)
+#+END_EXAMPLE
+in this example, we initially assign a value of 4 to the variable =a=,
+but later we overwrite this value with the result of the calculation
+in line 5. So the final value of =a= becomes 8.
+
+** Error Messages
+Copy the above example (mark and left click the text , and select the
+"copy" symbol from the menu bar, left click on your text cell, and
+select the paste symbol from the menu bar to copy the code cell. In
+this new code cell, replace =print(a)= with =print(A)= and execute
+your code. Please do so before you continue to read.
+
+Add a text-cell and describe the results of your experiment. Are
+variable names case specific or not? Mark your findings in *BOLD!*
+
+This is likely also your first encounter with python-error
+messages. They do look a bit cryptic, but are often quite
+useful. Let's take a closer look to understand what happened here:
+
+When you hit =shift+enter= you send the commands you have typed into
+the code cell to the python interpreter. This is just another computer
+program which will read your commands and try to make sense of
+it. Before running your code, the interpreter will do some sanity
+checks, and in the above case, it finds that the variable "A" was
+never defined. It thus prints:
+
+1) a red line
+2) the type of error, in this case "NameError", and some information
+   about the sequence how the errors are listed.
+3) the type of input (ipython) and in which cell it occurred, followed
+   by the memory address and the module name (let's ignore this for
+   the moment)
+4) the last couple of lines before the error occurred
+5) the line where the error occurred
+6) and if you are lucky some information why the error occurred
+
+In your assignment, add a text cell below the code cell with the
+error, with the following content (note, you create linebreaks by
+adding two spaces at the end of each line)
+#+BEGIN_EXAMPLE
+ErrorName  = 
+Input_Type =
+Cell_number where error occurred = 
+Memory address where error occurred =
+Module name where error occurred = 
+Line Number where error occurred = 
+Explanation of error type = 
+#+END_EXAMPLE
+and add the data you get from the actual error message after the equal
+signs. If you have difficulties seeing the various elements above,
+please talk to the TA or instructor
+
+OK, let's add another code cell and execute the following statement
+#+BEGIN_EXAMPLE
+a - b = 5
+#+END_EXAMPLE
+your mileage may vary (YMMV) but you may either get no result at all,
+or an error message. If you get no result, go to your Jupyter menu bar
+and select =Kernel -> Restart= and execute your cell again (a stuck
+process is often indicated by and asterisk on the left side of the
+code cell).
+
+Explain in a text cell why you get an error. Then add a new code cell
+and execute this statement
+#+BEGIN_EXAMPLE
+a b = 5
+#+END_EXAMPLE
+and explain why it fails.
+
+Next, execute this statement
+#+BEGIN_EXAMPLE
+f_g = 5
+#+END_EXAMPLE
+
+Explain why this statement succeeds, and what are the values for f &
+g?
+
+Last but not least, add a final text cell, and write down what you
+learned in this module.
+
+
+
+** Operator Precedence
+You will probably remember from high school that it makes a difference
+whether you write =2*(3+1)= or =(2*3)+1= because expressions with an
+exponent take precedence over multiplications or divisions, and those
+take precedence over addition and subtractions.
+
+Add one or more python cells populate them with code, which explores
+whether the python interpreter is aware of those rules or not. One
+cell for each rule, and explain your results, and what you make of
+it. E.g., you can write when I execute =2*3+1= I get the result of 8,
+but I should get 7. Therefore I conclude that python is totally
+clueless about the fact that multiplications trump additions.
+
+** Submission instructions
+#+INCLUDE: ./submission_instructions.org
+
+** Marking scheme:
+
+1) 3 points if the filename follows the filename Template
+   (capitalization, spaces, and dashes, 1pt each)
+2) 2 points if your formatting is as requested (i.e., correct use of
+   markdown syntax)
+3) 2 points if you have the correct (or internally consistent
+   explanation) of the above experiments (even if your expected result
+   is different from the one you obtained in the experiment)
+5) 2pts if all experiments (explanations) are correct. 1.5pts if 1
+   incorrect experiment/unreasonable explanation. 1pt if 2-3 incorrect
+   experiments / unreasonable explanations. 0.5 pt if lots of
+   errors. 0 pt if nothing makes sense.

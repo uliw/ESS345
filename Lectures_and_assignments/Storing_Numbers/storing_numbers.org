@@ -1,0 +1,212 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+#+LATEX_CLASS_OPTIONS: [table]
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+@@latex:\rowcolors{1}{gray!15}{white}@@
+
+
+
+
+
+* Storing numbers in a computer
+
+
+ 
+@@latex:\rowcolors{1}{gray!15}{white}@@ @@latex:\index{decimal system}@@ On
+its most basic level, computers are made of simple transistors.
+@@latex:\index{transistor}@@ . Transistors are nifty devices which allow us
+to control the flow of a large current with a small current. At their heart,
+they consist of two layers of thin silicon which has additional electrons
+in the crystal lattice, and thin layer of silicon which is missing some
+electrons (or vice versa). This thin layer acts as an insulator and
+prevents any current flow (see the sketch below). However, if we add a
+small current to this layer, we will move some electrons into the thin
+layer, which will take the space of the missing electrons in the crystal
+lattice, and now the current can flow between the two outer layers, until
+we remove the control current again - hence the term semiconductor. See
+this [[https://youtu.be/7ukDKVHnac4][youtube link]] for a detailed explanation.
+
+
+#+BEGIN_SRC ditaa :file transitor.png :exports none
+NPN transitor schema
+
+ Emitter  +-------------------+ Collector
+          |         +         |
+          | - - - -   - - - - |
+  -       |         +         |       +
+  ------->| - - - -   - - - - |------->
+          |         +         |
+          | - - - -   - - - - |
+          |         +         |
+          +-------------------+
+                    |
+                    |
+                    | +  Base
+#+END_SRC
+
+
+[[file:transitor.png]]
+
+
+
+For our purposes, a transistor can be thought of as a simple switch, which
+either lets an electrical current pass or not. As such, the transistor can
+reflect the numbers 0 (nothing passes) or 1, everything passes. So with a
+single transistor, we can count two numbers (0, 1).  Now, if we add another
+transistor, we should be able to count to four, however, since each
+transistor is either on or off, we need to express numbers in a binary
+system (i.e., number system, which only knows two numbers like zero and
+one).
+
+Let's consider how we count. We have 10 fingers, which we can use to
+count from 0 to 9. However, what happens if we need to count past 9?
+
+#+attr_latex: :align r|r|r|r
+| 100-999 | 10-99 | 0-9 | Name        |
+|---------+-------+-----+-------------|
+| \nbsp       | \nbsp     |   . | .           |
+| \nbsp       | \nbsp     |   . | .           |
+| \nbsp       | \nbsp     |   8 | eight       |
+| \nbsp       | \nbsp     |   9 | nine        |
+| \nbsp       | 1     |   0 | ten         |
+| \nbsp       | .     |   . | .           |
+| \nbsp       | 9     |   9 | ninty nine  |
+| 1       | 0     |   0 | one hundred |
+
+so each time we run out of fingers (counting apples for examples), we
+add a number to the left, which tells us that we already have ten (or
+twenty, thirty) apples, which we have to add to the current number of
+fingers. So we are counting in batches of 10. A more scientific way to
+say this is counting to the base of 10. We can rewrite the above table as
+
+#+attr_latex: :align r|r|r|r
+| 10^2 | 10^1 | 10^0 | Name        |
+|-----+-----+-----+-------------|
+| \nbsp   | \nbsp   |   . | .           |
+| \nbsp   | \nbsp   |   . | .           |
+| \nbsp   | \nbsp   |   8 | eight       |
+| \nbsp   | \nbsp   |   9 | nine        |
+| \nbsp   | 1   |   0 | ten         |
+| \nbsp   | .   |   . | .           |
+| \nbsp   | 9   |   9 | ninty nine  |
+| 1   | 0   |   0 | one hundred |
+
+where you would have to multiply the table header with the column
+value, e.g., 
+#+BEGIN_EXAMPLE
+10^0 x 8 = 1 x 8 = 8
+#+END_EXAMPLE
+
+lets try this with row 7
+#+BEGIN_EXAMPLE
+9 * 10^1 + 9 * 10^0 = 90 + 9 = 99
+#+END_EXAMPLE
+
+
+** The binary system
+@@latex:\index{binary system}@@ So how would we count if we only had one finger?
+Zero is easy, (no finger), and so is one (one finger), but what about
+2 and 3 etc...
+
+Similar to the above, we can do a table, but this time to the base of 2
+
+#+attr_latex: :align r|r|r|r
+| 2^2 | 2^1 | 2^0 | Name  |
+|----+----+----+-------|
+|  \nbsp |  \nbsp |  0 | zero  |
+|  \nbsp |  \nbsp |  1 | one   |
+|  \nbsp |  1 |  0 | two   |
+|  \nbsp |  1 |  1 | three |
+|  1 |  0 |  0 | four  |
+|  1 |  0 |  1 | five  |
+|  1 |  1 |  0 | six   |
+|  1 |  1 |  1 | seven |
+
+let's look at the last line in this table, which similar to the decimal system, can be written as 
+#+BEGIN_EXAMPLE
+1 * 2^2 + 1 * 2^1 + 1 * 2^0 which is equal to
+1 * 4 + 1 * 2 + 1 * 1 which is equal to
+4 + 2 + 1 = 7
+#+END_EXAMPLE
+so with three transistor memory cell @@latex:\index{memory cell}@@ we can store
+numbers from 0 to 7. If we had eight transistors, we could store
+numbers from zero to 2^8 = 255. Rather than saying a memory cell is eight transistors wide, it is
+common to say 8-bit (or 1 byte) wide. @@latex:\index{bit} \index{byte}@@
+
+Modern computers have memory cells that contain many more cells,
+typically 64 bits (or 8 byte), which allows them to store numbers from 0
+to 2^64. 
+
+The above works well for numbers that are positive and have no
+fractional part (i.e., 1, 2, 3 ,4 etc). These numbers are called
+unsigned integers. However, what about storing negative numbers?
+@@latex:\index{numbers!integer} \index{numbers!negative} \index{integer}@@
+
+In order to store a negative integer number, we have to sacrifice one
+bit, which will now indicate whether the number is positive or
+negative. These numbers are called signed integers, and with those, we
+can count from -2^63 to +2^63. @@latex:\index{signed integer}
+\index{integer!signed} \index{numbers!integer!signed}@@
+
+Numbers which have a fractional component are called floating-point
+@@latex:\index{numbers!floating point} \index{floating point
+numbers}@@ numbers (e.g., 1.2345). In order to store these numbers, we
+need a way to express them in our binary system. The trick is to
+decompose them into two integers
+#+BEGIN_EXAMPLE
+1.2345 = 12345 x 10^{-4} 
+#+END_EXAMPLE
+You can immediately see that such a number needs double the memory of
+an integer number.
+
+Some computing languages are quite particular about these things, e.g.,
+you need to declare that a given memory area will only hold signed
+integer values and any attempt to store another number type will
+result in an error message.
+
+Python is pretty easy going about this. I.e., if you write =a=1.23=
+python will know that you are storing a floating-point value. So why
+do we bother with this in the first place? Imagine you are dealing
+with very small numbers (say environmental pollution in the ppb
+range), it is important to understand that this number may not be
+accurately reflected in your code. This is in fact one of the more
+common problems when you work with computer models.
+
+
+It is possible to change the type of a number explicitly, try the
+following example.
+#+BEGIN_SRC ipython
+a = 20/3  # the result of this division is a floating-point number
+print(a)  # print the value of a
+int(a)    # convert a into an integer number
+#+END_SRC
+
+#+RESULTS:
+: # Out [1]: 
+: # output
+: 6.666666666666667
+: 
+: # text/plain
+: : 6
+
+There are two things to note here: A) the use of
+comments. @@latex:\index{python!comments}@@ Everything behind the
+hashtag is ignored but helps to explain what is going on; B) casting
+@@latex:\index{casting}@@ a float to an integer is different from
+rounding the value! (If you round 6.666 to the nearest integer, you
+would get 7!)
+
+*** Summary
+
+In this section, you should have developed some sense of 
+- how numbers are stored electronically
+- how to count if you only have one finger
+- how to convert from binary notation into decimal notation
+- that it matters what kind of numbers you are storing
+- the difference between casting and rounding
+  

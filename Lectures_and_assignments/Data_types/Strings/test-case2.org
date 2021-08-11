@@ -1,0 +1,4 @@
+Some text
+#+BEGIN_SRC ipython
+print("text")
+#+END_SRC

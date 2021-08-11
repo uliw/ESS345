@@ -1,0 +1,106 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil H:5
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+# #+LaTeX_CLASS: book
+#+LaTeX_CLASS: koma-book
+# #+LATEX_CLASS_OPTIONS: [twoside,open=right,letter,11pt,idxtotoc]
+#+LATEX_CLASS_OPTIONS: [letter,11pt,idxtotoc]
+#+LATEX_HEADER: \usepackage{breakurl}
+# #+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+#+LATEX_HEADER: \usepackage[strings]{underscore}
+
+
+* Assignment 
+
+
+
+** Learning Outcomes
+
+ - create/delete/rename folders/files on your jupyter cloud account
+ - create a jupyter notebook file
+ - edit text inside your jupyter notebook
+ - use markdown syntax to format notebook text elements
+
+** Instructions:
+Enough theory! Without further ado, let's create a new notebook of
+your own. *Since all content in the ESS345 folder is downloaded from*
+*another computer (and may thus be overwritten or deleted) we must
+take* *care that our own notebooks are created outside of this
+directory*.  If you have followed the previous instructions, you will
+already have the =My_Stuff= directory in your root folder. If not,
+please create it now. 
+
+Click on this folder to enter it, and then create a new folder called
+ =My_ESS345_Submissions=. Enter this folder, and left-click on the
+ =New= button in the upper right corner. Select =Python 3= to create a
+ new python notebook. Once the new notebook has opened, left-click on
+ =File= and then select "Rename" and name your file according to the
+ following Scheme
+
+=FirstName-Lastname-text-edit-assignment=
+So in my case, this should look like Fig. ref:name
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: name
+#+caption: You should see following, but make sure to use your own name
+[[./figures/Screenshot_20200528_101944.png]]
+
+
+
+In the middle of the menu bar, you will see the word =Code= just right
+of the double right arrow. This box tells you that the first (and
+currently empty cell) is a code box. You can change the cell type to
+=Markdown= by left-clicking on =Code=, or by using the =Cell= menu.
+
+1) Go ahead and change it to "Markdown"
+2) Now add the following text to this cell: "ESS345 Computational Geology Text Cell Assignment"
+4) Save your edits by hitting =shift+enter=
+5) Select this cell again (double left click) and now modify the text
+   using markdown syntax in such a way that it becomes a level 1
+   heading (see above).
+ 
+If you already have a new cell below the heading, change it to
+markdown mode (see above), or insert a new cell 
+(=Insert -> Cell below=) and change it to markdown afterward.
+
+In this cell, add the following text
+#+BEGIN_EXAMPLE
+Date: 
+
+First Name:
+
+Last Name:
+
+Student Id:
+#+END_EXAMPLE
+
+Add the current date, your first and last name, and your student id
+after the colon. Now change the formatting in such a way that the text
+before the colon is set in bold, whereas your personal info is set in
+a regular font.
+
+This should look something like this
+#+ATTR_LATEX: :width 0.7\textwidth
+#+name: name
+#+caption: Formatting example for your notebook submission
+[[./figures/Screenshot_20200921_111320.png]]
+
+Follow the previous instructions and save your notebook, and download
+it in =Notebook= and =pdf= format, and submit on Quercus.
+
+** Last but not least
+
+Review the learning outcomes above, and consider whether you feel
+confident about all of them. If not, post your concerns on the
+discussion board.
+
+** Marking Scheme
+ 
+1) 3 points if the filename follows the filename template (capitalization, spaces, and dashes!)
+2) 2 points if the text content is as requested (one for content, one
+   for layout)
+
+
+

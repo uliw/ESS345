@@ -1,0 +1,87 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil H:5
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+# #+LaTeX_CLASS: book
+#+LaTeX_CLASS: koma-book
+# #+LATEX_CLASS_OPTIONS: [twoside,open=right,letter,11pt,idxtotoc]
+#+LATEX_CLASS_OPTIONS: [letter,11pt,idxtotoc]
+#+LATEX_HEADER: \usepackage{breakurl}
+# #+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+#+LATEX_HEADER: \usepackage[strings]{underscore}
+
+* Assignment
+
+
+
+** Learning Outcomes
+
+ - getting to know the file system on your local computer
+ - understanding the differences between files and folders
+ - know how to uncover hidden files/folders
+
+#+ATTR_LATEX: :width 0.7\textwidth
+#+CAPTION: Note that the names and structure will be different on your Computer
+#+NAME: fig:one
+[[./Pictures/100002010000035F0000035D143C03BB8B0CB57B.png]]
+
+
+If you open your file browser (or file explorer or "finder" on Mac),
+it will only show you the files and folders in your home directory
+(the one which is called =/uliw= in the above picture) but not the
+full picture. *The names and the structure you see will be different
+on your computer*
+
+To expose the full path, you need to do the following:
+
+1. On a Windows computer: Open Explorer and go to =My Computer= ->
+   =Drive C:= (it could also be =This PC -> Windows8_OS (C:)=). You
+   may also need to activate the option "Show hidden files"
+2. On a Mac: Expose the hard disk you are working with by 
+   [[https://www.cnet.com/how-to/how-to-turn-on-drive-icon-mac-macbook/][following
+   these instructions:]]
+
+Now you have the tools to create your file system map. Please create
+an image similar to the above. Note that the above image is from my
+linux computer. This will look very different on a Mac, or a
+PC. However, you will find the following elements irrespective of your
+operating system:
+
+1. The full path to the directory where your operating system stores
+   the executable for your browser (e.g., =firefox.exe= on windows or
+   =firefox.dmg= (or firefox.app) on a mac (or whatever your browser
+   is called). Please include the name of the executable and it's file
+   extension as well (use an oval to denote files, and square boxes
+   for folders (see the example image). Note that in the above image,
+   the octave program is has no extension (that is a unix thing).
+ 
+2. The full path to the directory where your browser stores your
+   downloads. In my case, this would be =/home/uliw/Downloads/= (*test
+   this by downloading a file!*)
+3. Note, if you don't have software to do a block diagram, you can
+   draw the figure by hand, and take a picture with your cellphone.
+4. Save your figure in *jpg format* using the following naming
+   convention:
+
+    =Firstname-Lastname-FS-exercise.jpg=.
+
+   Note the absence of any blanks, the use of the dash in the file
+   name, and the way the capitalization is used. We will use this type
+   of file name throughout the course.  Note that some programs will
+   save your image file as =filename.jpeg=. Quercus will complain
+   about the =jpeg= extension. Simply rename it to =filename.jpg=, and
+   all is well.
+
+** Last but not least
+
+   - review the above learning outcomes
+   - if you do not feel confident about any of these, please review
+     the corresponding textbook chapter.
+   - If this does not help, please post on the discussion board.
+
+** Marking Scheme
+ - 4pts for the correct file system tree
+ - 2pts for using the correct image format
+ - 3pts for using the correct filename template.

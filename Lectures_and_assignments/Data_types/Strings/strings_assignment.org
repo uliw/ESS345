@@ -1,0 +1,63 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+OPTIONS: d:(not "results")
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+** Assignment
+
+Create a Jupyter Notebook called
+"FirstName-LastName-strings.ipynb". Add the usual pre-amble (Title, Name,
+Date, student id etc.). (2 pts)
+
+Use the following strings for this exercise
+#+BEGIN_EXAMPLE
+s_1 = "This is the first string"
+s_2 = "This is the second string"
+s_3 = "just some random letters"
+#+END_EXAMPLE
+
+In order to solve the questions below you need to use your knowledge
+about how to manipulate lists (i.e., ranges), and how to query the
+methods provided by a string object. For each of the following
+Questions, please add a text box (or comment), which states the question
+number (and preferably the question as well). Again, do not type your results,
+instead write code, which yields the requires results.
+
+ 1. Provide some code which adds a comma to the end of =s_1= (2pts)
+ 2. Using your knowledge about ranges, rewrite =s_1= in such a way
+    that the comma is being removed (i.e., =s_1 = s_1....= )  (1pts)
+ 3. Provide a code example which combines these 3 strings into =s_4=  (1pts)
+ 4. In a new cell, rewrite this example in a such away that the
+    resulting =s_4= has proper commas and blanks after each substring,
+    e.g., "This is the first string, This is the second string....."
+    (typing it does not count).  (2pts)
+ 5. Use a string-object method which will split your string into 3
+    lines. Your results should look like this.
+    #+BEGIN_EXAMPLE
+    ['This is the first string',
+     'This is the second string',
+     'just some random letters']
+    #+END_EXAMPLE
+    pay attention to the location of the commas, and the justification
+    on the left. If it does look very different, consider the next
+    question first. (2 pts)
+ 6. Explain whether your method changes data in place and why it 
+    requires/does not require a print statement to show the result. (2 pts)
+ 7. Provide a statement which fixes the capitalization in =s_4=. Note,
+    your statement should replace the capitalization in =s_4=. Add
+    =print(s_4)= to show the result of your operation. The idea is
+    that you do this with a single call using a string method. (1pts)
+ 8. Provide a one-line statement which removes all blanks from
+    =s_4=. Add =print(s_4)= to show the result of your operation.  (1pts)
+ 9. Provide a one-line statement using a string method which adds
+    blanks after each comma in =s_4=. Add =print(s_4)= to show the
+    result of your operation.  (1pts)
+ 10. Upload your assignment on Quercus as usual
+
+

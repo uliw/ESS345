@@ -1,0 +1,251 @@
+
+
+
+#+BEGIN_SRC ipython
+import pandas as pd
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+import seaborn as sns
+from typing import TypeVar, Tuple
+
+pds = TypeVar('pandas.core.series.Series')
+smw = TypeVar('statsmodels.regression.linear_model.RegressionResultsWrapper')
+
+
+
+def reg_model (X :pds, Y :pds)->Tuple[smw, str, float]:
+    """A little helper function which calculates an ordinary least squares
+    fit model, based on two variables.  Parameters: X values as pandas
+    data series, Y values as pandas data series. It returne the full
+    regression model, and a string.  The string can be used to display
+    the regression euqtion, the r-square and the p-value
+    """
+    
+    # calculate the regression model. The add_constant term is needed
+    # to calculate the y-intercept
+    model :smw  = sm.OLS(Y,sm.tools.add_constant(X)).fit()
+    yp :pds = Y
+
+    # extract the data we are interested in
+    p  :float = model.pvalues[1] # the p-value
+    r2 :float = model.rsquared   # the r-squared value
+    s  :float = model.params[1]  # the slope
+    y0 :float = model.params[0]  # the y-intercept
+
+    # calculate the predicted Y-values
+    yp :pds = y0 + s * X
+        
+    # create the display string
+    ds : str  = (f"y = {y0:1.4f}+x*{s:1.4f}\n"
+                 f"$r^2$ = {r2:1.2f}\n"
+                 f"p = {p:1.4f}")
+    
+    return (model, ds, yp)
+
+
+
+%matplotlib inline
+plt.figure(figsize=(5, 4))
+sns.set(style='darkgrid')
+
+fn :str = "storks_vs_birthrate.csv" # file name
+df = pd.read_csv(fn)
+df.head()
+
+X :pds = df["Birth rate (10^3 /yr)"]
+Y :pds = df["Storks (pairs)"]
+
+model, ds, yp = reg_model(X,Y)
+print(ds)
+ax = sns.regplot(X,Y)
+ax.text(100,40000,ds,verticalalignment='top')
+plt.tight_layout()
+plt.savefig("ggg1.pdf")
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [50]: 
+# output
+/usr/lib64/python3.7/site-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
+y = 106.1297+x*13.3616
+$r^2$ = 0.38
+p = 0.0079
+
+# text/plain
+: <Figure size 360x288 with 1 Axes>
+
+# image/png
+[[file:obipy-resources/80beae164aa084b964f5aca778011e4b6dc406cd/7980d3ea5a6e8130930d8f5b8bd3e28b89103fb8.png]]
+:end:
+
+
+#+BEGIN_SRC ipython
+from typing import TypeVar
+import os  # no need to alias, since os is already short
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt 
+
+pdf = TypeVar('pandas.core.frame.DataFrame')
+pds = TypeVar('pandas.core.series.Series')
+
+# lets get some data
+fn :str = "storks_vs_birth_rate.csv" # file name
+
+# this little piece of code could have saved me 20 minutes
+if os.path.exists(fn): # check if the file is actually there
+     df :pdf = pd.read_csv(fn) # read data
+     X :pds = df["Birth rate (10^3 /yr)"]
+     Y :pds = df["Storks (pairs)"]
+     print(df.head())
+else:
+     print("\n ------------------------------- \n")
+     print(f"{fn} not found")
+     print("\n ------------------------------- \n")
+     exit()
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [51]: 
+
+
+# text/plain
+: <Figure size 432x432 with 3 Axes>
+
+# image/png
+[[file:obipy-resources/80beae164aa084b964f5aca778011e4b6dc406cd/2cc728123bd1090b5851f5819a9eb7510cbe42ab.png]]
+:end:
+
+
+#+BEGIN_SRC ipython  
+from typing import TypeVar
+import os  # no need to alias, since os is already short
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt 
+
+pdf = TypeVar('pandas.core.frame.DataFrame')
+pds = TypeVar('pandas.core.series.Series')
+
+# lets get some data
+fn :str = "storks_vs_birth_rate.csv" # file name
+
+# this little piece of code could have saved me 20 minutes
+if os.path.exists(fn): # check if the file is actually there
+     df :pdf = pd.read_csv(fn) # read data
+     df.columns = ["Storks", "Births"]
+     print(df.head())
+else:
+     print("\n ------------------------------- \n")
+     print(f"{fn} not found")
+     print("\n ------------------------------- \n")
+     exit()
+#+END_SRC
+
+#+BEGIN_SRC ipython
+# https://www.statsmodels.org/dev/gettingstarted.html
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+mod = smf.ols(formula="Storks ~ Births",data=df)
+res = mod.fit()
+print(res.summary())
+s  :float = model.params[1]  # the slope
+y0 :float = model.params[0]  # the y-intercept
+#+END_SRC
+
+#+BEGIN_SRC ipython
+import numpy as np
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import seaborn as sns
+from typing import TypeVar
+
+npa = TypeVar(np.array)
+
+x0 =  np.arange(0, 30, 1) # this is the independent variable
+y0 =  12.1 + 0.23 * x0
+
+noise :npa = (np.random.uniform(-3,3,size=30))
+
+yn = y0 + noise # this will be the dependen variable
+
+df = pd.DataFrame({'x0':x0,'yn':yn})
+df.head()
+
+model = smf.ols(formula="yn ~ x0",data=df)
+
+# print(reveal_type(model))
+
+results = model.fit()
+
+slope  :float = results.params[1]  # the slope
+yi :float = results.params[0]      # the y-intercept
+rsquare :float = results.rsquared  # rsquare
+pvalue :float = results.pvalues[1] # the pvalue
+ds : str  = (f"y= 12.1 + 0.23 * x\n"
+             f"\n"
+             f"yn = {yi:1.4f}+x*{slope:1.4f}\n"
+             f"$r^2$ = {rsquare:1.2f}\n"
+             f"p = {pvalue:1.4f}")
+
+print(f"y = {y0p:1.2f} + {s:1.2f}*x")
+
+yp = results.predict()
+
+# print(yp)
+fig = plt.figure()  # Create a figure instance called fig
+ax  = plt.subplot()  # Create a plot instance called ax
+sns.set(style='darkgrid')
+fig.set_size_inches(5,4) # Set figure size in inches
+fig.set_dpi(120)  # Set resolution in dots per inch
+sns.regplot(x0, yn, ax=ax)
+ax.text(1,21,ds,verticalalignment='top')
+# plt.scatter(x0,yn)
+# plt.plot(x0,yp)
+plt.plot(x0,y0)
+fig.set_tight_layout('tight')
+fig.savefig('example.png')
+plt.show()
+                           
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [18]: 
+# output
+y = 13.05 + 0.16*x
+
+# text/plain
+: <Figure size 600x480 with 1 Axes>
+
+# image/png
+[[file:obipy-resources/85b28aed2863440a13b2ac0de940b854c1974cde/d196ba9616a3c3e55ed76400c99f2b761bc86358.png]]
+:end:
+
+
+2
+#+BEGIN_SRC ipython  
+import sys
+print(sys.version)
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [4]: 
+# output
+3.7.3 (default, Apr 09 2019, 05:18:21) [GCC]
+
+:end:
+
+
+#+BEGIN_SRC ipython  
+
+#+END_SRC
+

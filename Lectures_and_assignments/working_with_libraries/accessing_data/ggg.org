@@ -1,0 +1,390 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{breakurl}
+#+LATEX_HEADER: \usepackage{newuli}
+#+LATEX_HEADER: \usepackage{uli-german-paragraphs}
+
+
+
+
+* Working with libraries - an introduction
+
+
+@@latex:\index{library} \index{python!library}@@ A python library is
+simply a file which contains function definitions. The key, here, is
+that this file contains only function definitions, and no other
+program code. The file must also be written in plain python, it can't
+be in notebook format. This is no major inconvenience since most of
+the time, we only want to use the functions in the file, rather than
+changing them. Library development is hower best done with a full
+fledged python IDE (Integrated Development
+Environment). @@latex:\index{Integrated Development Environment}@@
+
+So why would we want that?
+
+  1) Moving often used functions into a library declutters your code.
+  2) Python has myriads of libraries which greatly extend the
+     functionality of the language.
+  3) Another important reason why we prefer to use libraries (rather
+     than writing our own code) is that the developers of the
+     libraries usually spend more time in optimizing the performances
+     and improving the compatibilities of the code. Also, it we
+     encounter problems using public libraries, we often can find
+     solutions or helpful information on the Internet. In that sense,
+     by using the public libraries, we are collaborating with the
+     whole community.
+  
+Why you would not want to use a library:
+
+  1) Unless it's your own library, you depend on someone else. Imagine
+     this great library you found, but it has this nasty bug, and the
+     guy who wrote this library is no longer responding to
+     e-mail.... it might be just easier to implement your desired
+     functionality yourself...
+  2) Libraries can introduce considerable complexities, which may be
+     overkill in your situation....
+  3) While python itself is in the public domain, third party
+     libraries are often under more restrictive licenses. Not a big
+     deal for your private code, but if you work in a commercial
+     environment, it may be a real show stopper.
+
+** Using a library in your code
+ 
+Consider the following simple library [[file:mylib.py][mylib.py]]. It only provides two
+functions. In order to access these functions, we first need to import
+the library, and then we can inspect its
+content. @@latex:\index{library!import}
+\index{python!library!import}@@
+#+BEGIN_SRC ipython
+import mylib
+dir(mylib)
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [28]: 
+# text/plain
+: ['__builtins__',
+:  '__cached__',
+:  '__doc__',
+:  '__file__',
+:  '__loader__',
+:  '__name__',
+:  '__package__',
+:  '__spec__',
+:  'hello_world',
+:  'square']
+:end:
+
+Note, the file mylib.py is present in this module folder. However, if
+you moved your assignment to the submission folder, you need to copy
+the file =mylib.py= as well! As you can see from the output of the
+above code, the =mylib= library provides two functions, =hello_world()
+and =square() Can you imagine what would happen if you load another
+library which provides the same functions? Yes, the earth would stop
+spinning, and we all would float helplessly into outer space...
+
+Python provides an ingenious solution to avoid such and undesirable
+outcome. Try the following:
+#+BEGIN_SRC ipython
+import mylib
+print(square(5))
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [29]: 
+# output
+25
+
+:end:
+
+yup, =mylib= provides =square()=, but you cannot use it by this name!
+So even if two libraries use the same name for the two different
+functions, earth will keep spinning!  To access a function which is
+defined inside a library, you have to write
+#+BEGIN_SRC ipython
+import mylib
+print(mylib.square(5))
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [30]: 
+# output
+25
+
+:end:
+
+Pure genious! Each library creates their own namespace upon import
+@@latex:\index{library!namespace} \index{python!library!namespace}@@. This
+mechanism avoids naming conflicts, but it also adds a lot of
+tpying.... There are two ways around it:
+
+ 1) Often you will only need on or two functions from a library (also
+    called module). In this case you can import each function
+    explicitly. So the onus is on you to make sure not to import
+    functions which share a name
+    #+BEGIN_SRC ipython
+     from mylib import hello_world, square
+     hello_world()
+     print(square(6))
+    #+END_SRC
+
+    #+RESULTS:
+    :results:
+    # Out [31]: 
+    # output
+    Hello World
+    36
+
+    :end:
+
+ 2) Or, you can can create a library alias (aka shortname). This
+    approach is particularly useful if you need to import a lot of
+    functions.
+    #+BEGIN_SRC ipython
+    import mylib as ml
+    ml.hello_world()
+    print(ml.square(6))
+    #+END_SRC
+
+    #+RESULTS:
+    :results:
+    # Out [32]: 
+    # output
+    Hello World
+    36
+
+    :end:
+
+
+** Using pandas to read data from an excel file
+Pandas is one of the most used python libraries, and provides powerful
+data analysis tools. It also provides for an easy way to read data
+from files which contain comma separated values (CSV), or from excel
+spreadsheets, or HDF files, etc., etc.. Here we will use isotope data
+from a recent paper of one of my graduate students
+
+In the following code snippet, we import the pandas library with the
+alias =pd=. So all of the functions provided by pandas are available
+as =pd.functionname()=. We will explore how to use some of the pandas
+provided functions below. Note, since pandas is a system library, you
+do not need a local copy in each working directory.
+
+In order to read the excel file @@latex:\index{excel!read} \index{read!excel},
+\index{functions!pd.read()}@@ we need to know it's name, and we need to
+know the name of the data sheet we want to read. If the read operation
+succeeds, the read data will be stored as a pandas dataframe
+object. You can think of the pandas dataframe as a table with rows,
+columns, headers, etc. Pay attention to the way how I use type hinting
+to indicate that that =os_peak= is variable which contains a
+dataframe.
+
+#+BEGIN_SRC ipython
+import pandas as pd # inport pandas as pd
+
+# define the file and sheetname we want to read. Note that the file
+# has to be present in the local working directory! 
+fn :str = "Yao_2018.xlsx" # file name
+sn :str = "outside_peak"  # sheet name
+
+# read the excel sheet using pandas read_excel function and add it to
+os_peak :pd.DataFrame = pd.read_excel(fn, sheet_name=sn) # the pandas
+                                                         # dataframe
+#+END_SRC
+
+
+
+** Working with the pandas dataframe object
+In most cases, your datasets will contain many lines. So listing all
+of this data is wasteful. Pandas provides the =head()= and =tail()=
+methods which will only show the first (or last) few lines of your
+dataset. Remember, that methods are bound to an object, as opposed to
+function which expect one or more variables as argument. So since line
+8 above created a pandas dataframe object with the name =os_peak=, the
+=head()= and =tail()= methods are now available through the data-frame
+object. If this does not make sense to you, please speak up!
+Otherwise, try both methods here: @@latex:\index{pandas!head()}
+\index{pandas!tail}@@
+#+BEGIN_SRC ipython :results output drawer
+os_peak.head()
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [3]: 
+# text/plain
+:   Core,section,interval(cm)  Depth [mbsf]  Age [Ma]       d34S  d34S error
+: 0           1221C 11-3X 0-3        153.40   55.0011  17.516152    0.208391
+: 1           1221C 11-3X 5-8        153.45   55.0184  17.575390    0.208391
+: 2           1221C 11-3X 5-8        153.45   55.0184  17.680569    0.208391
+: 3         1221C 11-3X 10-13        153.50   55.0358  17.737390    0.208391
+: 4         1221C 11-3X 15-18        153.55   55.0531  17.886092    0.208391
+
+[[file:/tmp/ob-ipython-htmlm9TN3i.html]]
+:end:
+
+If you are really on the ball, you may have noticed that the first
+column is not present in the actual excel file (you did check that the
+=data.read()= actually read the correct file and data, did you?)
+
+The numbers in the first row are called the index. Think of them as
+line numbers. All pandas objects show them, but they are ignored when
+you do computations with the data. So we do have an index column, and
+then we have data columns.
+
+*** Selecting specific rows
+In order to select a specific row from a pandas dataframe, we can use
+the =iloc()= method (short for integer location). In other words, if
+you want to select the 4th row, you can write @@latex:\index{pandas!iloc()}@@
+#+BEGIN_SRC ipython
+os_peak.iloc[3]  # get the 4th row
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [35]: 
+# text/plain
+: Core,section,interval(cm)    1221C 11-3X 10-13
+: Depth [mbsf]                             153.5
+: Age [Ma]                               55.0358
+: d34S                                   17.7374
+: d34S error                            0.208391
+: Name: 3, dtype: object
+:end:
+
+and you can use the normal slicing operators to get more than one row
+#+BEGIN_SRC ipython
+os_peak.iloc[3:5]  # get's the 4th to 6th row
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [36]: 
+# text/plain
+:   Core,section,interval(cm)  Depth [mbsf]  Age [Ma]       d34S  d34S error
+: 3         1221C 11-3X 10-13        153.50   55.0358  17.737390    0.208391
+: 4         1221C 11-3X 15-18        153.55   55.0531  17.886092    0.208391
+
+[[file:/tmp/ob-ipython-html3Gj8Xp.html]]
+:end:
+
+
+
+*** Selecting specific columns by index
+The =iloc()= method can also be used to select a specific row. In this
+case we have to give the row and colum index we want to retrieve (=iloc[row,col]=).
+#+BEGIN_SRC ipython
+os_peak.iloc[1,0] # get the data in the 2nd row of the 1st col
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [37]: 
+# text/plain
+: '1221C 11-3X 5-8'
+:end:
+You remember the slicing syntax (if not, review the slicing module).
+so if you want to see the first two rows of the third column:
+#+BEGIN_SRC ipython
+os_peak.iloc[0:2,3]  # get the first 2 rows from the 4th column
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [38]: 
+# text/plain
+: 0    17.516152
+: 1    17.575390
+: Name: d34S, dtype: float64
+:end:
+
+order to get all data from the third column you can write
+#+BEGIN_SRC ipython
+os_peak.iloc[:,2] # get all data from the third columns
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [39]: 
+# text/plain
+: 0     55.00110
+: 1     55.01840
+: 2     55.01840
+: 3     55.03580
+: 4     55.05310
+: 5     55.05660
+: 6     55.07050
+: 7     55.08780
+: 8     55.10520
+: 9     55.12250
+: 10    55.13990
+: 11    55.15720
+: 12    55.21464
+: 13    55.21740
+: 14    55.22292
+: 15    55.22568
+: 16    55.22844
+: 17    55.22844
+: 18    55.23120
+: 19    55.23400
+: 20    55.23680
+: 21    55.23950
+: 22    55.24230
+: 23    55.24230
+: 24    55.24510
+: 25    55.24510
+: 26    55.25470
+: 27    55.26160
+: 28    55.30310
+: 29    55.30310
+: Name: Age [Ma], dtype: float64
+:end:
+
+
+
+*** Selecting rows/columns by Label
+Pandas also supports the selection by label, rather then index. This
+is done with the =.loc(row_label,column_label)= method. So the first
+argument is the row label, and the second is the column label.
+However the statement below requires @@latex:\index{pandas!loc()}@@ *some
+attention*. On first sight, it appears that we mix =iloc()= and
+=loc()= syntax here. However, this is not the case, rather, this
+commands treats the index-column as a label. So if your first index
+number would start at 100, this code would yield no result, since
+there is no label called "2". As a side note, the index does not even
+have to be numeric, it could well be a date-time value, or even a
+letter code. So =loc[2:4,'d34S']= does not use slicing notation,
+rather, is means as long as the label is equal to 2, 3 or 4. This
+difference is illustrated by the following code. 
+#+BEGIN_SRC ipython
+print(os_peak.iloc[2:4,3]) # extract index values which are >= 2 and <4 
+print(os_peak.loc[2:4,'d34S']) # extract the d34S data for index
+                               # labels which equal 2, 3, or 4
+#+END_SRC
+
+#+RESULTS:
+:results:
+# Out [40]: 
+# output
+2    17.680569
+3    17.737390
+Name: d34S, dtype: float64
+2    17.680569
+3    17.737390
+4    17.886092
+Name: d34S, dtype: float64
+
+:end:
+
+*** Getting statistical coefficients
+Pandas supports a large number of statistical methods, and the
+=describe()= method will give you a quick overview of your
+data. @@latex:\index{pandas!describe()}@@
+#+BEGIN_SRC ipython :result output drawer
+os_peak.describe()
+#+END_SRC
+

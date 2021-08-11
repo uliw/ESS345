@@ -1,0 +1,40 @@
+#+STARTUP: showall
+#+OPTIONS: todo:nil tasks:nil tags:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output pp replace
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage[table]{xcolor}
+
+* Testcase
+ 
+On its most basic level, computers are made of simple transistors.
+@@latex:\index{transistor}@@
+
+
+@@latex:\rowcolors{1}{blue!15}{white}@@
+
+Lets consider how we count. We have 10 fingers, wich we can use to
+count from 0 to 9. However, what happens if we need to count past 9?
+
+#+attr_latex: :align c|c|c|c
+| 100-999 | 10-99 | 0-9 | Name  |
+|---------+-------+-----+-------|
+| .       | .     |   . | .     |
+| d       | d     |   8 | eight |
+
+* Testcase
+ 
+On its most basic level, computers are made of simple transistors.
+@@latex:\index{transistor}@@
+
+
+@@latex:\rowcolors{1}{blue!15}{white}@@
+
+Let's consider how we count. We have ten fingers, which we can use to
+count from 0 to 9. However, what happens if we need to count past 9?
+
+#+attr_latex: :align c|c|c|c
+| 100-999 | 10-99 | 0-9 | Name  |
+|---------+-------+-----+-------|
+| .       | .     |   . | .     |
+| d       | d     |   8 | eight |
