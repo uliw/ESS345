@@ -55,7 +55,7 @@ course, we will use this somewhat lengthy URL:
 If you look careful you see that the first part specifies the utoronto
 jupyter server, which is followed by a redirect to a program called
 git-pull with a references the github repository I use for the course
-materials. This will first authenticate you, them download or update
+materials. This will first authenticate you, then download or update
 the course materials, and then start your jupyter interface.
 
 So if you click on this link it should open a browser window with the
@@ -69,7 +69,7 @@ error message. See below how to resolve them.)
 and this will then take you to your UtorId login screen (Fig. ref:utorid)
 #+ATTR_LATEX: :width 0.7\textwidth
 #+name: utorid
-#+caption: The UtorId login screen
+#+caption: The UTorID login screen
 [[./Tianshi/TL-fig-002.png]]
 
 and finally you should see a screen like the one shown in
