@@ -19,7 +19,7 @@
  
 @@latex:\rowcolors{1}{gray!15}{white}@@ @@latex:\index{decimal system}@@ On
 its most basic level, computers are made of simple transistors.
-@@latex:\index{transistor}@@ . Transistors are nifty devices which allow us
+@@latex:\index{transistor}@@ Transistors are nifty devices which allow us
 to control the flow of a large current with a small current. At their heart,
 they consist of two layers of thin silicon which has additional electrons
 in the crystal lattice, and thin layer of silicon which is missing some

@@ -48,9 +48,7 @@ UTorID.
 There are different ways to access your Jupyter account. In this
 course, we will use this somewhat lengthy URL:
 
-\url{https://utoronto.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https:/github.com/uliw/ESS345&urlpath=tree/ESS345}
-
-
+\ulr{https://utoronto.syzygy.ca/jupyter/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fuliw%2FESS345&urlpath=tree%2FESS345%2F&branch=master}
 
 If you look careful you see that the first part specifies the utoronto
 jupyter server, which is followed by a redirect to a program called

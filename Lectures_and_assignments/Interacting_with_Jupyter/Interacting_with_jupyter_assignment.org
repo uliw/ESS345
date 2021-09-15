@@ -73,7 +73,7 @@ First Name:
 
 Last Name:
 
-Student Id:
+Student ID:
 #+END_EXAMPLE
 
 Add the current date, your first and last name, and your student id

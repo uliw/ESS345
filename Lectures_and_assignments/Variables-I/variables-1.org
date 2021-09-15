@@ -39,12 +39,6 @@ hit =shift+enter=
 #+BEGIN_SRC ipython
 a = 4
 #+END_SRC
-
-#+RESULTS:
-:results:
-# Out [1]: 
-:end:
-
 This will produce no output, but you will have assigned the value of 4
 to the variable =a=. Let's verify that this assignment did succeed. We
 can do so by asking the python interpreter to print the value
@@ -54,13 +48,7 @@ this cell
 print(a)
 #+END_SRC
 
-#+RESULTS:
-:results:
-# Out [2]: 
-# output
-4
 
-:end:
 
 Go ahead and try this
 #+BEGIN_SRC ipython
@@ -70,12 +58,7 @@ c=10
 (a/b)*c
 #+END_SRC
 
-#+RESULTS:
-:results:
-# Out [3]: 
-# text/plain
-: 8.0
-:end:
+
 
 So far, this seems straightforward, and it likely reminds you of
 symbolic math you've learned in your school years. While there are
@@ -107,12 +90,6 @@ we will likely get away with the basics ones
 9 ** 0.5 # the square root of 9 (you remember that from school do you?)
 #+END_SRC
 
-#+RESULTS:
-:results:
-# Out [4]: 
-# text/plain
-: 3.0
-:end:
 
 So by now, you have learned three very fundamental skills:
 
