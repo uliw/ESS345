@@ -11,6 +11,21 @@
 
 * Lists
 
+*Note 1:* This notebook contains several code blocks. The idea being that
+you execute these code blocks as you read through the text. So treat
+this notebook as an interactive tutorial, rather than a static
+test. This mode of reading will be the default going forward.
+
+*Note 2:* If you accidentally modify/delete notebook content, goto
+=File= -> =Revert to Checkpoint=, and select the last a
+checkpoint. The system should create a checkpoint the first time you
+open a notebook. 
+
+*Note 3:* Checkpoints are a powerful feature. When you work on your
+assignments, create them ever so often, so that you do not lose your
+work. It is good coding practice to create a new checkpoint whenever
+you solved a minor milestone, and before you tackle the next problem.
+
 @@latex:\index{variable!types!lists} \index{lists!variable type}@@ So
 far, we only considered variables which hold a single value. However,
 the true power of programming stems from the fact that you apply a
@@ -38,10 +53,6 @@ ugh, this fails, you need to separate list items with commas!
 my_list = [1, 2, 3]
 #+END_SRC
 
-#+RESULTS:
-: # Out [2]: 
-
-
 why is there no output?
 
 The above statements assign values to a variable, however, the
@@ -54,11 +65,6 @@ my_list = [1, 2, 3]
 print(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [3]: 
-: # output
-: [1, 2, 3]
-: 
 
 You may have noticed that in the previous modules, most variable names
 were a single letter, whereas here I use a compound word. Personally,
@@ -69,6 +75,9 @@ the word =my=. This is simply to avoid potential overlap with builtin
 python functions (e.g., =list()= which is a builtin function).
 
 *** Take me home:
+
+A summary of important concepts in the above chapter
+
  - You create lists by enclosing a sequence of numbers into square brackets
  - Individual list entries must be separated by a comma
  - Avoid the letters O, l, in variable names as they are easily
@@ -95,11 +104,6 @@ this list, so we can write
 print(my_list[1])
 #+END_SRC
 
-#+RESULTS:
-: # Out [3]: 
-: # output
-: 3.2
-: 
 
 The number in the square bracket is called the index and refers to
 position of the list element inside the list. Why do we see the 2^{nd}
@@ -118,11 +122,6 @@ elements of a list (a so called slice), we can specify a range.
 print(my_list[2:4])
 #+END_SRC
 
-#+RESULTS:
-: # Out [6]: 
-: # output
-: [1.45, 12.01]
-: 
 
 So rather than specifying a list index, we provide a range expression
 =2:4= which you can read as =start:stop=. Compare the result of in
@@ -145,14 +144,6 @@ print(my_list=[-3:-1]) # the third and second last!
 print(my_list[-3:])   # the last 3
 #+END_SRC
 
-#+RESULTS:
-: # Out [7]: 
-: # output
-: 12.01
-: 1.45
-: [3.2, 1.45]
-: [3.2, 1.45, 12.01]
-: 
 
 If you are really on the ball, you noticed that =-3:-1= and =-3:= give
 different results, and you now know why (it is the same answer as in
@@ -171,27 +162,12 @@ print(my_list[:3])  # this is the same
 print(my_list[:])   # will print the whole list
 #+END_SRC
 
-#+RESULTS:
-: # Out [8]: 
-: # output
-: [1.12, 3.2, 1.45]
-: [1.12, 3.2, 1.45]
-: [1.12, 3.2, 1.45, 12.01, 1.12, 3.2, 1.45, 12.01]
-: 
 
 last but not least, we can add a third argument to the range, to tell python to only access every n-th element (=start:stop:step-size=)
 #+BEGIN_SRC ipython
 print(my_list[0:-1:2]) # every second element  until the second last starting with the first
 print(my_list[1::2])   # every second element including the last, starting with the second
 #+END_SRC
-
-#+RESULTS:
-: # Out [9]: 
-: # output
-: [1.12, 1.45, 1.12, 1.45]
-: [1.12, 1.45, 1.12, 1.45]
-: [1.12, 1.45, 1.12, 1.45]
-: 
 
 and we can extend this to display the list in reverse. I.e., we
 specify the higher index value as start value and the lower index
@@ -204,15 +180,6 @@ print(my_list[-3::-1])  # start with the 3rd last element going  backwards to th
 print(my_list[-1::-1])  # Show the entire list backwards
 print(my_list[::-1])    # Same but sthorter
 #+END_SRC
-
-#+RESULTS:
-: # Out [8]: 
-: # output
-: [3.2, 1.12, 12.01, 1.45, 3.2]
-: [3.2, 1.12, 12.01, 1.45, 3.2, 1.12]
-: [12.01, 1.45, 3.2, 1.12, 12.01, 1.45, 3.2, 1.12]
-: [12.01, 1.45, 3.2, 1.12, 12.01, 1.45, 3.2, 1.12]
-: 
 
 If you do not understand why the first results omit the 1^{st} list
 element, please speak up now.

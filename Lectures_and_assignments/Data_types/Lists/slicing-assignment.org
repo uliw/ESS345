@@ -21,6 +21,11 @@ Run this to export the notebook without the results attached!
 
 * Assignment
 
+Note: It may be easiest, if you copy this entire notebook to your
+submission folder and add title and id etc, rather than the other way
+round.
+
+
 ** Learning Outcomes
  
  - get comfortable selecting subsets from list-type variables using
