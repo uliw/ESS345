@@ -8,7 +8,7 @@
 #+LATEX_HEADER: \usepackage{newuli}
 #+LATEX_HEADER: \usepackage{uli-german-paragraphs}
 
-** TODO Add list addition
+** TODO
 
 * Working with lists
 
@@ -22,22 +22,12 @@ my_list[1] = 44
 print(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [1]: 
-: # output
-: [1, 2, 3]
-: [1, 44, 3]
-: 
-
 
 I also assume that it is clear what I am trying to do in this example
 #+BEGIN_SRC ipython
 my_list = [1, 2, 3]
 my_second_list = my_list
 #+END_SRC
-
-#+RESULTS:
-: # Out [2]: 
 
 
 but explain the following:
@@ -47,12 +37,6 @@ my_second_list = my_list
 my_list[1] = 44
 print(my_second_list)
 #+END_SRC
-
-#+RESULTS:
-: # Out [3]: 
-: # output
-: [1, 44, 3]
-: 
 
 
 To understand this result, we need to make a detour into what
@@ -76,11 +60,6 @@ l = len(my_list)
 print(l)
 #+END_SRC
 
-#+RESULTS:
-: # Out [3]: 
-: # output
-: 3
-: 
 
 This approach is very straight forward and clean (and what we will be
 using for this course)
@@ -90,7 +69,7 @@ programming. In this case a set of self contained code, not only
 contains instructions of how to modify data, but it also contains the
 data.  @@latex:\index{object!oriented programming}@@.  While python
 allows for both programming styles, the actual python language itself
-is written object oriented code. So far, we considered =my_list= just
+is written as object oriented code. So far, we considered =my_list= just
 a special type of variable. It is however much more. =my_list= is in
 fact list-object, which contains the list-data, but also knows several
 methods to manipulate this data.
@@ -101,12 +80,6 @@ my_sorted_list = sorted(my_list)
 print(my_sorted_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [4]: 
-: # output
-: [1, 2, 6]
-: 
-
 Again, we pass =my_list= as argument to the =sort()= function, which
 will return the a sorted list which we then can store in
 =my_sorted_list=
@@ -116,17 +89,10 @@ Now let's do this the object oriented way.
 my_list.sort()
 print(my_list)
 #+END_SRC
-
-#+RESULTS:
-: # Out [5]: 
-: # output
-: [1, 2, 6]
-: 
-
 Here, we call the =sort()= method of the list-object, which will then
 sort the list. Nice and compact, but now, we have modified the actual
 list, whereas in the functional example, the original data was left
-untouched.
+untouched. 
 
 We can explore what methods @@latex:\index{object!methods}@@
  @@latex:\index{python!functions!dir()} \index{functions!dir()}@@ are known to a
@@ -190,8 +156,7 @@ dir(my_list)
 This will print a lengthy list of methods available with this
 object. All the methods which start with a double underscore are meant
 for internal use only (so-called "dunders"), all others are referred to as "user visible"  @@latex:\index{objects!methods!user visible}@@ @@latex:\index{user visible object methods}@@
- @@latex:\index{dunders}@@, so we
-will not worry about them in this course. In our examples above, when
+ @@latex:\index{dunders}@@.  In our examples above, when
 you call the list without anything, the =__str__= method is executed
 and prints a string with the list data. And that is all you need to
 know about double underscore methods (dunders).
@@ -199,22 +164,12 @@ know about double underscore methods (dunders).
 How do we use these methods? Try this
 #+BEGIN_SRC ipython
 my_list  # this will activate the __str__ method
+
+# now call my_list with the __str__() method and test if you get the same output
+# note that methods are called by adding a dot to the object name, followed by the
+# method name and a pair of brackets, i.e., my_list.__str__()
 #+END_SRC
 
-#+RESULTS:
-: # Out [7]: 
-: # text/plain
-: : [1, 2, 6]
-
-#+BEGIN_SRC ipython
-## but we can also use it explicitly
-my_list.__str__()
-#+END_SRC
-
-#+RESULTS:
-: # Out [9]: 
-: # text/plain
-: : '[1, 2, 6]'
 
 The results of both expressions are identical. Note, however, the use
 of the brackets. Without this, the second example will fail (methods
@@ -255,22 +210,12 @@ print(my_list)
 : [1, 3, 44]
 : 
 
-Since you may lose the original list,  sorting a list in place may, or
-may not  be what you want!  See the above  example on how to  return a
-sorted copy.
+Since you may lose the original list, sorting a list in place may, or
+may not be what you want! You may need to create a copy first, if you
+want to preserve the list ordering.
 
 
-*Take me home:*
- - python objects consist of data and methods to manipulate the data
- - methods with a double underscore are not meant for external use
- - object methods are called by appending the method name with a dot
-   to the object name (i.e., =my_list.sort()=).
- - Most object methods do not generate return values, rather they
-   modify data in place.
- - functions are called by typing the function name and providing the
-   argument to the function in brackets (i.e., =sorted(my_list)=)
- - most functions return a modified copy of the data which then needs
-   to be stored in a new variable.
+
 
 
 *** How to find out what those methods do
@@ -322,6 +267,19 @@ likely directs you to =programiz= where you will find a clear
 explanation and examples! And if this does not help, pipe up and get
 in touch with your TA or instructor!
  
+*Take me home:*
+ - python objects consist of data and methods to manipulate the data
+ - you can list the available methods of an object using the =dir()= function
+ - methods with a double underscore are not meant for external use
+ - object methods are called by appending the method name with a dot
+   to the object name (i.e., =my_list.sort()=).
+ - Most object methods do not generate return values, rather they
+   modify data in place.
+ - You can query what a method does by calling the help function (=help(object.method_name)=)
+ - functions are called by typing the function name and providing the
+   argument to the function in brackets (i.e., =sorted(my_list)=)
+ - most functions return a modified copy of the data which then needs
+   to be stored in a new variable.
 
 ** Referencing objects
 @@latex:\index{object!reference}@@ So most things python, are actually
@@ -336,11 +294,6 @@ my_list[1] = 44           # use the copied object handle to modify a list elemen
 print(my_second_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [11]: 
-: # output
-: [1, 44, 3]
-: 
 
 @@latex:\index{object!copy}@@
 So the second line does not produce a copy of the data in =my_list=,
@@ -351,18 +304,12 @@ print(id(my_list))
 print(id(my_second_list))
 #+END_SRC
 
-#+RESULTS:
-: # Out [12]: 
-: # output
-: 139631940633352
-: 139631940633352
-: 
-
 as you can see, they are identical. So if we modify the content of
 =my_second_list=, and then ask python to print the data at the memory
 location =my_list= points to, we obviously get the very same data as
 in =my_second_list=. Confused? You are in good company!
 
+But if you actually want an independent copy of  =my_list=?
 Python provides several methods around this problem, and as long as
 you deal with simple lists that do not contain other lists, we can use
 the =copy= method of the list object. This kind of copy is known as
@@ -377,12 +324,44 @@ print(my_list)
 print(my_second_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [13]: 
-: # output
-: [1, 44, 3]
-: [1, 2, 3]
-: 
+and just when you think you finally got it, consider this:
+#+BEGIN_SRC ipython
+my_list = [1, 2, 3]
+my_second_list = my_list
+print(id(my_list))
+print(id(my_second_list))
+my_list = 12
+print(my_list)
+print(my_second_list)
+#+END_SRC
+
+
+surprisingly, =my_second_list= is not affected by the assignment in
+line 3! What happens here? Line 3 is an assignment where you ask
+python to assign the value of 12 to =my_list=. So this assignment
+deletes the previous definition of =my_list= and replaces it with the
+value of 12. This is fundamentally different from =my_list[1] = 44=,
+where you ask to change the first element of the list. So the
+assignment expression is not for the list, but for the list element!
+
+But what happens to =my_second_list= in the above case? Python checks
+whether an object is referenced by another object. If so, the new
+=my_list= object is created in a different memory location so that you do not loose the data in =my_second_list=. Let's
+Verify this:
+#+BEGIN_SRC ipython
+my_list = [1, 2, 3]
+my_second_list = my_list
+print(id(my_list))
+print(id(my_second_list))
+my_list = 12
+print(my_list)
+print(my_second_list)
+print(id(my_list))
+print(id(my_second_list))
+#+END_SRC
+It is actually a bit more complicated than this, but this simple
+explanation will do for us.
+
 
 *** Take me home
 
@@ -396,6 +375,7 @@ print(my_second_list)
  - functions expect data as argument, and will return a copy of the
    processes data (aka result)
 
+
 ** Manipulating lists
 @@latex:\index{manipulating!lists} \index{list!manipulating}@@ Back to our main
 task. You have a list, and you want to append a value  @@latex:\index{lists!manipulating!append}@@
@@ -405,11 +385,6 @@ my_list.append(1)
 print(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [14]: 
-: # output
-: [4, 2, 3, 1]
-: 
 
 lets, insert a new number at index position 2   @@latex:\index{lists!manipulating!insert}@@
 #+BEGIN_SRC ipython
@@ -417,11 +392,6 @@ my_list.insert(1,44)
 print(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [15]: 
-: # output
-: [4, 44, 2, 3, 1]
-: 
 
 lets remove the last item on the list  @@latex:\index{lists!manipulating!remove element}@@
 #+BEGIN_SRC ipython
@@ -429,24 +399,12 @@ my_list.pop()
 print(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [16]: 
-: # output
-: [4, 44, 2, 3]
-: 
-
 we can also be specific and remove the item at a given index
 #+BEGIN_SRC ipython
 my_list = [6,3,4,6,9]
 my_list.pop(1)
 print(my_list)
 #+END_SRC
-
-#+RESULTS:
-: # Out [17]: 
-: # output
-: [6, 4, 6, 9]
-: 
 
 we can remove a value. Unlike =list.pop()= this will remove the first
 occurrence of the number 6.
@@ -456,12 +414,6 @@ my_list.remove(6)
 print(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [18]: 
-: # output
-: [6, 4, 6, 9]
-: [4, 6, 9]
-: 
 
 rather than adding a single value, we can add list of values
 #+BEGIN_SRC ipython
@@ -470,11 +422,6 @@ my_list.extend([1,2,3])
 print(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [2]: 
-: # output
-: [6, 3, 4, 6, 9, 1, 2, 3]
-: 
 
 a variation of the above is when we have two lists which we can add together in the following way:
 #+BEGIN_SRC ipython
@@ -483,11 +430,7 @@ new_list = my_list + second_list
 print(new_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [9]: 
-: # output
-: [6, 3, 4, 6, 9, 1, 2, 3, 12, 16, 3, 0]
-: 
+ 
 Will the above also work for subtracting two list from each other?
 
 We can find out at which index position we will find a given
@@ -500,27 +443,12 @@ print(my_list)
 my_list.index(3)
 #+END_SRC
 
-#+RESULTS:
-: # Out [3]: 
-: # output
-: [6, 3, 4, 6, 9, 1, 2, 3]
-: 
-: # text/plain
-: : 1
 
 we can count how many times a value occurs in the list
 #+BEGIN_SRC ipython
 print(my_list)
 my_list.count(6)
 #+END_SRC
-
-#+RESULTS:
-: # Out [20]: 
-: # output
-: [6, 3, 4, 6, 9, 1, 2, 3]
-: 
-: # text/plain
-: : 2
 
 and we can remove a value. *Note, that this will only remove the first
 occurrence!*
@@ -531,12 +459,6 @@ print(my_list)
 #+END_SRC
 
 
-#+RESULTS:
-: # Out [10]: 
-: # output
-: [6, 3, 4, 6, 9, 1, 2, 3]
-: [3, 4, 6, 9, 1, 2, 3]
-: 
 
 and reverse a list (which is different than sorting!)  @@latex:\index{lists!manipulating!reverse}@@
 #+BEGIN_SRC ipython
@@ -544,13 +466,6 @@ print(my_list)
 my_list.reverse()
 print(my_list)
 #+END_SRC
-
-#+RESULTS:
-: # Out [22]: 
-: # output
-: [3, 4, 6, 9, 1, 2, 3]
-: [3, 2, 1, 9, 6, 4, 3]
-: 
 
 sometimes it come in handy to know how many elements are in a
 list. For this we can use the python function =len()=. Note how this
@@ -561,11 +476,6 @@ method (i.e., =my_list.len()=)
 len(my_list)
 #+END_SRC
 
-#+RESULTS:
-: # Out [17]: 
-: # text/plain
-: : 7
-
 and for good measure, we can delete all list items
 @@latex:\index{lists!manipulating!delete}@@
 #+BEGIN_SRC ipython
@@ -573,13 +483,6 @@ print(my_list)
 my_list.clear()
 print(my_list)
 #+END_SRC
-
-#+RESULTS:
-: # Out [23]: 
-: # output
-: [3, 2, 1, 9, 6, 4, 3]
-: []
-: 
 
 
 ** Take me home
@@ -594,7 +497,7 @@ print(my_list)
      - You have practiced using methods which belong to the list
        objects (e.g., =list.pop()=, =list.index()= etc.), and using
        functions like =len(list)=
-     - Many of the above methods will only return work with the first
+     - Many of the above methods will only work with the first
        occurrence of a value. In a later chapter we will learn how we
        can use repetition to, e.g., get the index values of all
        occurrences.

@@ -60,16 +60,16 @@ starting with the third element in the list. 2pts
 
 
 Write python statement which shows every second element of the last 6
-elements in =my_list= 2pts. I suggest you first test your range
-expression with a step size of -1, to make sure you use the correct range
+elements in =my_list= 2pts. Note, consider to split this into two steps, where you first select the last 6 elements and a save them into a new list, and than you write a statement which selects every second element. You can also chain list-slicing commands, e.g., =my_list[1:4][::2]=. In this case you first specify a list from index 1 to 4, and then select every second element. Note, the expected answer starts with the number 9
 #+BEGIN_SRC ipython
 # Add your code here
 #+END_SRC
 
 Write python statement which shows every second element of the last 6
 elements in =my_list= in reverse order 3 pts (i.e., you count
-backwards from the last list element, and then start with the second
-last element of this sub list)
+backwards from the last 6 list elements, and then start with the
+second last element of this sub list). This time, chain your slicing
+statements as in the example above.
 #+BEGIN_SRC ipython
 # Add your code here
 #+END_SRC
@@ -100,7 +100,7 @@ ml = ["This", "is", "a", "short", "sentence"]
 
 *** Advanced question
 
-Add a python statement which will uses slicing syntax to extract the
+Add a python statement which will uses chained slicing syntax to extract the
 first and last element of the first list in the list of lists. It is
 ok to assume that the sub-list length is 3. (3 pt)
 #+BEGIN_SRC ipython

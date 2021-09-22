@@ -47,7 +47,7 @@ my_list = [3, 4, 5, 12, 0, 11, 1, 2, 9, 8, 7, 13, 10]
 #+END_SRC
 
 Add a code block below, which displays =my_list= in reverse order
-without affecting the actual ordering of =y_list= (2 pts). Add a
+without affecting the actual ordering of =my_list= (2 pts). Add a
 second line which uses a list method to order the contents of
 =my_list=. (2 pts)
 
@@ -97,12 +97,28 @@ a = [1, 2, 3,]
 a + 2 * a
 #+END_SRC
 
+Write a python statement which prints =a= in reverse order without
+using a list method or function. 2pts
 
+** Advanced question (6 pts)
+
+Consider the following two lists:
+#+BEGIN_SRC ipython
+a = [1, 2, 3]
+b = ['John', 'Anna', 'George']
+#+END_SRC
+find a python expression which combines the two list into a single
+list and prints the result as =[(1, 'John'), (2, 'Anna'), (3,
+'George')]= This is not in the textbook and requires that you do some
+sleuthing on your own. I am looking for a solution which is a one
+liner involving no more than two python function calls (excluding the
+print statement). Note do not spend more than 30 minutes on this,
+unless you have nothing else to do.
 
 ** Marking Scheme
-Total points: 36
+Total points: 46
 
- - Points as listed in each question 34 pts
+ - Points as listed in each question 44 pts
  - Correct naming scheme 2 pts
 
 
