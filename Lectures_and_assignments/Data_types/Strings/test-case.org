@@ -1,7 +1,0 @@
-Some text
-
-| Dec | Hex | Char | Description |
-|-----+-----+------+-------------|
-|  65 |  41 | A    | Capital A   |
-
-some text
